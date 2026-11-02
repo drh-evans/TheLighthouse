@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class App {
     static Scanner stdin = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
-        GameState gameState = new GameState();
+        GameState gameState = World.initialiseGameState();
         boolean running = true;
 
         while(running){
