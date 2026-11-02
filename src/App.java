@@ -18,7 +18,7 @@ public class App {
                 rest = result[1];
             }
 
-            Actions.executeAction(gameState, verb, rest);
+            gameState = Actions.executeAction(gameState, verb, rest);
         }
     }
 }    
