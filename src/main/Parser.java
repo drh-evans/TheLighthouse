@@ -3,25 +3,16 @@ package main;
 public class Parser {
     public static String[] parser(String input) throws Exception {
         String userInput = input.toLowerCase().trim();
-        //initlize spaceIndex to -1 to indicate no space found
-        int spaceIndex = 0;
-        try {
-            //look for a space in the user input
-            spaceIndex = userInput.indexOf(" ");
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+        int spaceIndex = userInput.indexOf(" ");
+        String verb = "", rest = "";
+        // if only one word was found spaceIndex is -1
+        if (spaceIndex != -1) {
+            verb = userInput.substring(0, spaceIndex);
+            rest = userInput.substring(spaceIndex + 1);
         }
 
-        //if space is not found
-        if (spaceIndex == -1) {
-            return new String[] {userInput, ""};
-        }
-        String verb = userInput.substring(0, spaceIndex);
-        String rest = userInput.substring(spaceIndex + 1);
-         String[] result = new String[] {verb};
-        if (rest != null && !rest.isEmpty()) {
-            result = new String[] {verb, rest};
-        }
-        return result;
+        /* if we found only one word, return it. Otherwise return the first word 
+            in result[0] followed by the rest of the word. */
+        return spaceIndex == -1 ? new String[] {userInput, ""} : new String[] {verb, rest};
     }
 }
