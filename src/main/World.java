@@ -33,4 +33,22 @@ public class World {
         "Watch Room",
         "Lamp Room"
     };
+
+    // For initialising gameState for testing
+    public static GameState initialiseTestGameState() {
+        int initialRoom = 0;
+        Map<String, Integer> initialItemLocations = Map.of(
+            "apple", 0,
+            "key", 1
+        );
+        return new GameState(initialRoom, initialItemLocations);
+    }
+
+    public static int getInitialRoom() {
+        return initialRoom;
+    }
+
+    public static Map<String, Integer> getInitialItemLocations() {
+        return initialItemLocations;
+    }
 }

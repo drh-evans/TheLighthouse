@@ -11,4 +11,8 @@ public class GameState {
         this.currentRoom = currentRoom;
         this.itemLocations = new HashMap<>(initialItemLocations);
     }
+
+    public boolean isItemInCurrentRoom(String item) {
+        return this.itemLocations.get(item) == this.currentRoom;
+    }
 }

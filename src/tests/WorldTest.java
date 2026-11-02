@@ -4,17 +4,24 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Map;
 import main.GameState;
+import main.World;
 
 public class WorldTest {
     @Test 
     void initialiseGameStateHappyPath() {
-        int initialRoom = 0;
-        Map<String, Integer> initialItemLocations = Map.of(
-            "key", 1
-        );
-        GameState initialGameState = new GameState(initialRoom, initialItemLocations);
+        int initialRoom = World.getInitialRoom();
+        int initialKeyLocation = World.getInitialItemLocations().get("key");
+        GameState initialGameState = World.initialiseGameState();
 
-        assertEquals(0, initialGameState.currentRoom);
-        assertEquals(1, initialGameState.itemLocations.get("key"));
+        assertEquals(initialRoom, initialGameState.currentRoom);
+        assertEquals(initialKeyLocation, initialGameState.itemLocations.get("key"));
+    }
+
+    @Test 
+    void initialiseTestGameStateHappyPath() {
+        GameState testGameState = World.initialiseTestGameState();
+
+        assertEquals(0, testGameState.currentRoom);
+        assertEquals(1, testGameState.itemLocations.get("key"));
     }
 }

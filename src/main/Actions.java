@@ -4,10 +4,13 @@ public class Actions {
     public static String executeAction(GameState gameState, String verb, String rest) {
         return switch (verb) {
             case "move", "go" -> move(gameState, rest);
+            case "take" -> take(gameState, rest);
             default -> "";
+
         };
     }
 
+    // Move
     static String move(GameState gameState, String rest) {
         if (rest.isEmpty()) {
             return "Move where?";
@@ -42,4 +45,20 @@ public class Actions {
             default -> -1;
         };
     }
+
+    // Take
+    static String take(GameState gameState, String rest) {
+        boolean isItemHere = gameState.isItemInCurrentRoom(rest);
+
+        if (isItemHere) {
+            gameState.itemLocations.replace(rest, -1);
+            // System.out.println("Item taken!");
+            return "Item taken!";
+        } else {
+            // System.out.println("No such item here");
+            return "No such item here";
+        }
+    }
+
+    
 }
