@@ -1,5 +1,9 @@
 package main;
 
 public class GameState {
-    public int currentRoom = 0;
+    public int currentRoom;
+
+    public GameState() {
+        this.currentRoom = 0;
+    }
 }
