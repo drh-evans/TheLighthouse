@@ -19,10 +19,8 @@ public class Parser {
         String verb = userInput.substring(0, spaceIndex);
         String rest = userInput.substring(spaceIndex + 1);
          String[] result = new String[] {verb};
-         System.out.println("checkpoint 1");
         if (rest != null && !rest.isEmpty()) {
             result = new String[] {verb, rest};
-            System.out.println("checkpoint 2");
         }
         return result;
     }
