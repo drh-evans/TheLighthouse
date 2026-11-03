@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 public class Actions {
     public static String executeAction(GameState gameState, String verb, String rest) {
         return switch (verb) {
@@ -38,7 +40,6 @@ public class Actions {
         return World.map[currentRoom][direction];
     }
 
-    //assigns the direction given after a 'move' or 'go' command to a number that corresponds to the direction in the map array
     public static int sortDirection(String direction) {
         return switch (direction) {
             case "north" -> 0;
@@ -54,7 +55,8 @@ public class Actions {
     // Take
     static String take(GameState gameState, String rest) {
         boolean doesItemExist = gameState.doesItemExist(rest);
-        if (!doesItemExist) return "No such item in game";
+        if (!doesItemExist)
+            return "No such item in game";
 
         boolean isItemHere = gameState.isItemInCurrentRoom(rest);
 
@@ -68,5 +70,29 @@ public class Actions {
         }
     }
 
-    
+    // Quit
+    public static boolean quit() {
+        System.out.println("This action cannot be reversed, are you sure you want to quit? (y/n)");
+
+        String input = getStringInput();
+
+        while (!input.equals("y") && !input.equals("n")) {
+            System.out.println("Invalid input, please enter 'y' or 'n': ");
+            input = getStringInput();
+        }
+        return getQuitGameResult(input);
+    }
+
+    private static boolean getQuitGameResult(String input) {
+        if (input.equals("y")) {
+            System.out.println("Quitting game...");
+            return false;
+        }
+        return true;
+    }
+
+    private static String getStringInput() {
+        Scanner stdin = new Scanner(System.in);
+        return stdin.nextLine().toLowerCase();
+    }
 }
