@@ -1,12 +1,10 @@
-import static org.junit.Assert.assertArrayEquals;
+package tests;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class AppTest{
-    // Testing the Parser
+public class ParserTest{
     @Test 
-    
     void testSingleWord() throws Exception
     {
         String [] result = main.Parser.parser("Move");
@@ -38,7 +36,6 @@ public class AppTest{
     {
         String [] result = main.Parser.parser("move west     ");
         assertArrayEquals(new String [] {"move", "west"}, result);
-
     }
 
     @Test 
@@ -48,19 +45,10 @@ public class AppTest{
         assertArrayEquals(new String [] {"move", "west"}, result);
     }
 
-
-
-
-
     @Test 
     void testForEmptyInput () throws Exception
     {
-
         String [] result = main.Parser.parser("");
         assertArrayEquals(new String [] {"", ""},result );
-        
     }    
-
-
-
 }
