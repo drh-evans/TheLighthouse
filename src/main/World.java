@@ -26,8 +26,8 @@ public class World {
 
     // For initialising gameState in App.java
     private static int initialRoom = 0;
-    private static Map<String, Integer> initialItemLocations = Map.of(
-        "key", 1
+    private static Map<String, Item> initialItemLocations = Map.of(
+        "key", new Item("key", "A small gold key", 1)
     );
 
     public static GameState initialiseGameState() {
@@ -38,9 +38,9 @@ public class World {
     public static GameState initialiseTestGameState() {
         // Test vals
         int initialRoom = 0;
-        Map<String, Integer> initialItemLocations = Map.of(
-            "apple", 0,
-            "key", 1
+        Map<String, Item> initialItemLocations = Map.of(
+            "apple", new Item("apple", "A crisp red apple", 0),
+            "key", new Item("key", "A small gold key", 1)
         );
         return new GameState(initialRoom, initialItemLocations);
     }
@@ -49,7 +49,7 @@ public class World {
         return initialRoom;
     }
 
-    public static Map<String, Integer> getInitialItemLocations() {
+    public static Map<String, Item> getInitialItemLocations() {
         return initialItemLocations;
     }
 }

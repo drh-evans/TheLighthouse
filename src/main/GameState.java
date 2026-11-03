@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class GameState {
     public int currentRoom;
-    public HashMap<String, Integer> itemLocations;
+    public HashMap<String, Item> itemLocations;
 
-    public GameState(int currentRoom, Map<String, Integer> initialItemLocations) {
+    public GameState(int currentRoom, Map<String, Item> initialItemLocations) {
         this.currentRoom = currentRoom;
         this.itemLocations = new HashMap<>(initialItemLocations);
     }
@@ -21,6 +21,6 @@ public class GameState {
     }
 
     public boolean isItemInCurrentRoom(String item) {
-        return this.itemLocations.get(item) == this.currentRoom;
+        return this.itemLocations.get(item).getLocation() == this.currentRoom;
     }
 }
