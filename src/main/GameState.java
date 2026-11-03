@@ -12,6 +12,10 @@ public class GameState {
         this.itemLocations = new HashMap<>(initialItemLocations);
     }
 
+    public String getCurrentRoomLabel() {
+        return World.roomNames[this.currentRoom];
+    }
+
     public boolean doesItemExist(String item) {
         return this.itemLocations.get(item) != null;
     }

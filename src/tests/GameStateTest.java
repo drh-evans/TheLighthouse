@@ -22,6 +22,14 @@ public class GameStateTest {
     }
 
     @Test 
+    public void getCurrentRoomLabelTest() {
+        GameState gameState = World.initialiseTestGameState();
+        String roomLabel = gameState.getCurrentRoomLabel();
+
+        assertEquals("Shore Path", roomLabel);
+    }
+
+    @Test 
     public void doesItemExistTest() {
         GameState gameState = World.initialiseTestGameState();
         assertTrue(gameState.doesItemExist("key"));

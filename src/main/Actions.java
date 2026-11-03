@@ -84,6 +84,7 @@ public class Actions {
         } else {
             return "Inventory: " + itemString;
         }
+    }
     // Quit
     public static boolean quit() {
         System.out.println("This action cannot be reversed, are you sure you want to quit? (y/n)");

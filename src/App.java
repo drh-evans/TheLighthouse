@@ -6,10 +6,12 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         GameState gameState = World.initialiseGameState();
+        String currentRoomLabel = gameState.getCurrentRoomLabel();
         boolean running = true;
 
-        while (running) {
-            System.out.print("> ");
+        while(running){
+            
+            System.out.printf("%s > ", currentRoomLabel);
             String input = stdin.nextLine();
             String[] result = Parser.parser(input);
             String verb = result[0];
