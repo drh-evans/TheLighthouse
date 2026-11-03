@@ -65,21 +65,29 @@ public class Actions {
         }
     }
 
+    // Quit
     public static boolean quit() {
-        Scanner stdin = new Scanner(System.in);
         System.out.println("This action cannot be reversed, are you sure you want to quit? (y/n)");
 
-        String input = stdin.nextLine().toLowerCase();
+        String input = getStringInput();
 
         while (!input.equals("y") && !input.equals("n")) {
             System.out.println("Invalid input, please enter 'y' or 'n': ");
-            input = stdin.nextLine().toLowerCase();
+            input = getStringInput();
         }
+        return getQuitGameResult(input);
+    }
 
+    private static boolean getQuitGameResult(String input) {
         if (input.equals("y")) {
             System.out.println("Quitting game...");
             return false;
         }
         return true;
+    }
+
+    private static String getStringInput() {
+        Scanner stdin = new Scanner(System.in);
+        return stdin.nextLine().toLowerCase();
     }
 }
