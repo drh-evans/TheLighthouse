@@ -1,6 +1,7 @@
 package main;
 
 import java.util.stream.Collectors;
+import java.util.Scanner;
 
 public class Actions {
     public static String executeAction(GameState gameState, String verb, String rest) {
@@ -15,27 +16,31 @@ public class Actions {
 
     // Move
     static String move(GameState gameState, String rest) {
+        //if the user did not provide a direction, return a message asking for one
         if (rest.isEmpty()) {
             return "Move where?";
         }
+
         int direction = sortDirection(rest);
+        //if the user provided an invalid direction, return a message saying so
         if (direction == -1) {
             return "That is not a valid direction.";
         }
+        //check if they can move in that direction and return the next room name if they can
         int moveNext = nextRoom(gameState.currentRoom, direction);
         if (moveNext == -1) {
             return "You are not able to move" + rest + " in this room";
         }
-
+        //update the current room and return the next room name
         gameState.currentRoom = moveNext;
         System.out.println("You move " + rest + ".");
         return World.roomNames[gameState.currentRoom];
     }
 
+    //returns the next room number based on the current room and the direction given
     public static int nextRoom(int currentRoom, int direction) {
         return World.map[currentRoom][direction];
     }
-
 
     public static int sortDirection(String direction) {
         return switch (direction) {
@@ -52,7 +57,8 @@ public class Actions {
     // Take
     static String take(GameState gameState, String rest) {
         boolean doesItemExist = gameState.doesItemExist(rest);
-        if (!doesItemExist) return "No such item in game";
+        if (!doesItemExist)
+            return "No such item in game";
 
         boolean isItemHere = gameState.isItemInCurrentRoom(rest);
 
@@ -78,5 +84,29 @@ public class Actions {
         } else {
             return "Inventory: " + itemString;
         }
+    // Quit
+    public static boolean quit() {
+        System.out.println("This action cannot be reversed, are you sure you want to quit? (y/n)");
+
+        String input = getStringInput();
+
+        while (!input.equals("y") && !input.equals("n")) {
+            System.out.println("Invalid input, please enter 'y' or 'n': ");
+            input = getStringInput();
+        }
+        return getQuitGameResult(input);
+    }
+
+    private static boolean getQuitGameResult(String input) {
+        if (input.equals("y")) {
+            System.out.println("Quitting game...");
+            return false;
+        }
+        return true;
+    }
+
+    private static String getStringInput() {
+        Scanner stdin = new Scanner(System.in);
+        return stdin.nextLine().toLowerCase();
     }
 }
