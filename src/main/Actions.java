@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 public class Actions {
     public static String executeAction(GameState gameState, String verb, String rest) {
         return switch (verb) {
@@ -33,7 +35,6 @@ public class Actions {
         return World.map[currentRoom][direction];
     }
 
-
     public static int sortDirection(String direction) {
         return switch (direction) {
             case "north" -> 0;
@@ -49,7 +50,8 @@ public class Actions {
     // Take
     static String take(GameState gameState, String rest) {
         boolean doesItemExist = gameState.doesItemExist(rest);
-        if (!doesItemExist) return "No such item in game";
+        if (!doesItemExist)
+            return "No such item in game";
 
         boolean isItemHere = gameState.isItemInCurrentRoom(rest);
 
@@ -63,5 +65,18 @@ public class Actions {
         }
     }
 
-    
+    public static boolean quit() {
+        Scanner stdin = new Scanner(System.in);
+        System.out.println("This action cannot be reversed, are you sure you want to quit? (y/n)");
+
+        String input = stdin.nextLine().toLowerCase();
+
+        // stdin.close();
+
+        if (input.equals("y")) {
+            System.out.println("Quitting game...");
+            return false;
+        }
+        return true;
+    }
 }
