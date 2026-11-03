@@ -21,6 +21,12 @@ public class GameStateTest {
         assertEquals(1, initialGameState.itemLocations.get("key"));
     }
 
+    @Test 
+    public void doesItemExistTest() {
+        GameState gameState = World.initialiseTestGameState();
+        assertTrue(gameState.doesItemExist("key"));
+    }
+
     @Test
     public void isItemInCurrentRoom() {
         GameState gameState = World.initialiseTestGameState();

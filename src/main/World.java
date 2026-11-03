@@ -14,16 +14,6 @@ public class World {
         {-1, -1, -1, -1, -1, 5},      // Room 6 Lamp Room
     };
 
-    // For initialising gameState in App.java
-    private static int initialRoom = 0;
-    private static Map<String, Integer> initialItemLocations = Map.of(
-        "key", 1
-    );
-
-    public static GameState initialiseGameState() {
-        return new GameState(initialRoom, initialItemLocations);
-    }
-
     public static final String[] roomNames = {
         "Shore Path",
         "Keeper's Cottage",
@@ -34,8 +24,19 @@ public class World {
         "Lamp Room"
     };
 
+    // For initialising gameState in App.java
+    private static int initialRoom = 0;
+    private static Map<String, Integer> initialItemLocations = Map.of(
+        "key", 1
+    );
+
+    public static GameState initialiseGameState() {
+        return new GameState(initialRoom, initialItemLocations);
+    }
+
     // For initialising gameState for testing
     public static GameState initialiseTestGameState() {
+        // Test vals
         int initialRoom = 0;
         Map<String, Integer> initialItemLocations = Map.of(
             "apple", 0,

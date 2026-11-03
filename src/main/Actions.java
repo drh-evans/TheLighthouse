@@ -48,6 +48,9 @@ public class Actions {
 
     // Take
     static String take(GameState gameState, String rest) {
+        boolean doesItemExist = gameState.doesItemExist(rest);
+        if (!doesItemExist) return "No such item in game";
+
         boolean isItemHere = gameState.isItemInCurrentRoom(rest);
 
         if (isItemHere) {

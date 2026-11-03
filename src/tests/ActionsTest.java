@@ -10,7 +10,15 @@ public class ActionsTest {
         GameState testGameState = World.initialiseTestGameState();
         String message = Actions.executeAction(testGameState,"take", "apple");
 
-        assertEquals(-1, testGameState.itemLocations.get("apple"));
         assertEquals(message, "Item taken!");
+        assertEquals(-1, testGameState.itemLocations.get("apple"));
+    }
+
+    @Test 
+    void takeNonExistentItem() {
+        GameState testGameState = World.initialiseTestGameState();
+        String message = Actions.executeAction(testGameState, "take", "crown");
+
+        assertEquals(message, "No such item in game");
     }
 }
