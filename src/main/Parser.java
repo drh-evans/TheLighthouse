@@ -2,7 +2,7 @@ package main;
 
 public class Parser {
     public static String[] parser(String input) throws Exception {
-        String userInput = input.toLowerCase().trim();
+        String userInput = input.toLowerCase().trim().replaceAll("\\s+", " ");
         int spaceIndex = userInput.indexOf(" ");
         String verb = "", rest = "";
         // if only one word was found spaceIndex is -1
