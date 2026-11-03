@@ -33,8 +33,7 @@ public class Actions {
         }
         //update the current room and return the next room name
         gameState.currentRoom = moveNext;
-        System.out.println("You move " + rest + ".");
-        return World.roomNames[gameState.currentRoom];
+        return "You move " + rest + ".";
     }
 
     //returns the next room number based on the current room and the direction given
