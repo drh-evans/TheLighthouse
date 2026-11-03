@@ -7,9 +7,10 @@ public class App {
     public static void main(String[] args) throws Exception {
         GameState gameState = World.initialiseGameState();
         boolean running = true;
-
-        while (running) {
-            System.out.print("> ");
+        
+        while(running){
+            String currentRoomLabel = gameState.getCurrentRoomLabel();
+            System.out.printf("%s > ", currentRoomLabel);
             String input = stdin.nextLine();
             String[] result = Parser.parser(input);
             String verb = result[0];
