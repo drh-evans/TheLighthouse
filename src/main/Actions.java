@@ -71,7 +71,10 @@ public class Actions {
 
         String input = stdin.nextLine().toLowerCase();
 
-        // stdin.close();
+        while (!input.equals("y") && !input.equals("n")) {
+            System.out.println("Invalid input, please enter 'y' or 'n': ");
+            input = stdin.nextLine().toLowerCase();
+        }
 
         if (input.equals("y")) {
             System.out.println("Quitting game...");
