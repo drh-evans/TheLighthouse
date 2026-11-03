@@ -21,4 +21,21 @@ public class ActionsTest {
 
         assertEquals(message, "No such item in game");
     }
+
+    @Test
+    void checkEmptyInventoryTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        String message = Actions.executeAction(testGameState, "check", "inventory");
+
+        assertEquals(message, "Inventory empty");
+    }
+
+    @Test
+    void checkInventoryTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        Actions.executeAction(testGameState, "take", "apple");
+        String message = Actions.executeAction(testGameState, "check", "inventory");
+
+        assertEquals(message, "Inventory: apple");
+    }
 }
