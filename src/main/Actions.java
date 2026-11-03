@@ -62,7 +62,7 @@ public class Actions {
         boolean isItemHere = gameState.isItemInCurrentRoom(rest);
 
         if (isItemHere) {
-            gameState.itemLocations.replace(rest, -1);
+            gameState.itemLocations.get(rest).setLocation(-1);
             // System.out.println("Item taken!");
             return "Item taken!";
         } else {
@@ -74,7 +74,7 @@ public class Actions {
     // Check inventory
     static String inventory(GameState gameState, String rest) {
         String itemString = gameState.itemLocations.entrySet().stream()
-        .filter(entry -> entry.getValue() == -1)
+        .filter(entry -> entry.getValue().getLocation() == -1)
         .map(entry -> entry.getKey())
         .collect(Collectors.joining(", "));
 
@@ -84,6 +84,7 @@ public class Actions {
             return "Inventory: " + itemString;
         }
     }
+
     // Quit
     public static boolean quit() {
         System.out.println("This action cannot be reversed, are you sure you want to quit? (y/n)");

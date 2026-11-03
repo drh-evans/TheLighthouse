@@ -9,11 +9,11 @@ public class WorldTest {
     @Test 
     void initialiseGameStateHappyPath() {
         int initialRoom = World.getInitialRoom();
-        int initialKeyLocation = World.getInitialItemLocations().get("key");
+        int initialKeyLocation = World.getInitialItemLocations().get("key").getLocation();
         GameState initialGameState = World.initialiseGameState();
 
         assertEquals(initialRoom, initialGameState.currentRoom);
-        assertEquals(initialKeyLocation, initialGameState.itemLocations.get("key"));
+        assertEquals(initialKeyLocation, initialGameState.itemLocations.get("key").getLocation());
     }
 
     @Test 
@@ -21,6 +21,6 @@ public class WorldTest {
         GameState testGameState = World.initialiseTestGameState();
 
         assertEquals(0, testGameState.currentRoom);
-        assertEquals(1, testGameState.itemLocations.get("key"));
+        assertEquals(1, testGameState.itemLocations.get("key").getLocation());
     }
 }
