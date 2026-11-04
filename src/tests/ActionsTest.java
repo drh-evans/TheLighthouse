@@ -64,11 +64,11 @@ public class ActionsTest {
     }
 
     @Test
-    void moveNotRecognisedDirectionTest() {
+    void moveNotRecognisedDirectionTest() throws Exception {
         GameState testGameState = World.initialiseTestGameState();
         String message = Actions.executeAction(testGameState, "move", "sideways");    
 
-        assertEquals(message, "That is not a valid direction ");
+        assertEquals(message, "That is not a valid direction.");
     }
 
     @Test
@@ -79,5 +79,23 @@ public class ActionsTest {
         assertEquals(message, "Locked door. Unlock with key");
     }
     
-    
+    @Test 
+    void giveRequiredItemTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        Actions.executeAction(testGameState, "take", "lantern");
+        Actions.executeAction(testGameState, "move", "east");
+        String message = Actions.executeAction(testGameState, "give", "lantern");
+        assertEquals(message, "Item given! You've received an item back!");
+        assertEquals(testGameState.itemLocations.get("lantern").getLocation(), -2);
+        assertEquals(testGameState.itemLocations.get("key").getLocation(), -1);
+    }
+
+    @Test
+    void giveUnrequiredItemTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        Actions.executeAction(testGameState, "take", "apple");
+        Actions.executeAction(testGameState, "move", "east");
+        String message = Actions.executeAction(testGameState, "give", "apple");
+        assertEquals(message, "Character doesn't require that");
+    }
 }

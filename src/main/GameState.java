@@ -7,15 +7,18 @@ public class GameState {
     public int currentRoom;
     public HashMap<String, Item> itemLocations;
     public int[][] doorStates;
+    public HashMap<String, Character> characters;
 
     public GameState(
         int currentRoom, 
         Map<String, Item> initialItemLocations,
-        int[][] doorStates
+        int[][] doorStates,
+        Map<String, Character> characters
     ) {
         this.currentRoom = currentRoom;
         this.itemLocations = new HashMap<>(initialItemLocations);
         this.doorStates = doorStates;
+        this.characters = new HashMap<>(characters);
     }
 
     public String getCurrentRoomLabel() {
@@ -56,6 +59,19 @@ public class GameState {
         }
         return foundLockedDoorIndex;
     } 
+
+    public boolean isCharacterPresent() {
+        return this.characters.entrySet().stream()
+            .anyMatch(entry -> entry.getValue().getLocation() == this.currentRoom);
+    }
+
+    public Character getRoomCharacter() {
+        return this.characters.entrySet().stream()
+            .filter(entry -> entry.getValue().getLocation() == this.currentRoom)
+            .map(entry -> entry.getValue())
+            .findFirst()
+            .orElse(null);
+    }
 
     public boolean checkGameWon() {
         // return this.currentRoom == 6 && isItemInCurrentRoom("can");

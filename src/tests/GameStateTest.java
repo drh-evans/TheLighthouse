@@ -4,10 +4,8 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Map;
-import main.GameState;
-import main.World;
-import main.Item;
-import main.Actions;
+import java.util.List;
+import main.*;
 
 public class GameStateTest {
     @Test
@@ -21,7 +19,10 @@ public class GameStateTest {
             {-1, -1, -1, 0, -1, -1},
             {-1, 0, 0, -1, -1, -1},
         };
-        GameState initialGameState = new GameState(initialRoom, initialItemLocations, doorMap);
+        Map<String, main.Character> testCharacters = Map.of(
+            "keeper", new main.Character("keeper", 1, List.of("key"), "lantern")
+        );
+        GameState initialGameState = new GameState(initialRoom, initialItemLocations, doorMap, testCharacters);
 
         assertEquals(0, initialGameState.currentRoom);
         assertEquals(1, initialGameState.itemLocations.get("key").getLocation());
@@ -71,6 +72,23 @@ public class GameStateTest {
         GameState gameState = World.initialiseTestGameState();
 
         assertEquals(0, gameState.findLockedDoorForCurrentRoom());
+    }
+
+    @Test 
+    public void isCharacterPresentTest() {
+        GameState gameState = World.initialiseTestGameState();
+        Actions.executeAction(gameState, "move", "east");
+        assertTrue(gameState.isCharacterPresent());
+    }
+
+    @Test 
+    public void getRoomCharacterTest() {
+        GameState gameState = World.initialiseTestGameState();
+        main.Character character = new main.Character("Keeper", 1, List.of("key"), "lantern");
+        Actions.executeAction(gameState, "move", "east");
+        assertEquals(character.getName(), gameState.getRoomCharacter().getName());
+        assertEquals(character.getLocation(), gameState.getRoomCharacter().getLocation());
+        assertEquals(character.getInventory(), gameState.getRoomCharacter().getInventory());
     }
 
     @Test 
