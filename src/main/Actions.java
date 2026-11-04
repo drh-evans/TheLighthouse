@@ -10,6 +10,7 @@ public class Actions {
             case "move", "go" -> move(gameState, rest);
             case "unlock" -> unlock(gameState, rest);
             case "take" -> take(gameState, rest);
+            case "give" -> give(gameState, rest);
             case "check", "inv", "inventory" -> inventory(gameState, rest);
             case "examine" -> examine(gameState, rest);
             case "look" -> look(gameState);
@@ -104,6 +105,36 @@ public class Actions {
             // System.out.println("No such item here");
             return "No such item here";
         }
+    }
+
+    // Give 
+    static String give(GameState gameState, String rest) {
+        // Does item exist?
+        boolean doesItemExist = gameState.doesItemExist(rest);
+        if (!doesItemExist) return "That item doesn't exist";
+
+        // Is item in player inv?
+        boolean isItemInInv = gameState.doesInventoryContain(rest);
+        if (!isItemInInv) return "You don't have that in your inventory";
+
+        // Is character present?
+        boolean isPresent = gameState.isCharacterPresent();
+        if (!isPresent) return "No character present";
+
+        Character character = gameState.getRoomCharacter();
+
+        // Does character require item?
+        boolean characterRequiresItem = character.getRequiredItem().equals(rest);
+        String characterItem = character
+            .getInventory().stream()
+            .findFirst().orElse(null);
+
+        if (characterRequiresItem) {
+            character.addItemToInventory(rest);
+            gameState.itemLocations.get(rest).setLocation(-2);
+            gameState.itemLocations.get(characterItem).setLocation(-1);
+            return "Item given! You've received an item back!";
+        } else return "Character doesn't require that";
     }
 
     // Check inventory

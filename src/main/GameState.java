@@ -60,6 +60,19 @@ public class GameState {
         return foundLockedDoorIndex;
     } 
 
+    public boolean isCharacterPresent() {
+        return this.characters.entrySet().stream()
+            .anyMatch(entry -> entry.getValue().getLocation() == this.currentRoom);
+    }
+
+    public Character getRoomCharacter() {
+        return this.characters.entrySet().stream()
+            .filter(entry -> entry.getValue().getLocation() == this.currentRoom)
+            .map(entry -> entry.getValue())
+            .findFirst()
+            .orElse(null);
+    }
+
     public boolean checkGameWon() {
         // return this.currentRoom == 6 && isItemInCurrentRoom("can");
         return this.currentRoom == 6 && getItemLocation("oil can") == -1;
