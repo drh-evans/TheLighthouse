@@ -70,6 +70,26 @@ public class GameStateTest {
     public void findLockedDoorForCurrentRoomTest() {
         GameState gameState = World.initialiseTestGameState();
 
-        assertEquals(0, gameState.findLockedDoorForCurrentRoom(gameState));
+        assertEquals(0, gameState.findLockedDoorForCurrentRoom());
+    }
+
+    @Test 
+    public void checkGameWonTest() {
+        GameState gameState = World.initialiseTestGameState();
+        assertFalse(gameState.checkGameWon());
+
+        Actions.executeAction(gameState, "move", "east");
+        Actions.executeAction(gameState, "take", "key");
+        Actions.executeAction(gameState, "move", "west");
+        Actions.executeAction(gameState, "unlock", "door");
+        Actions.executeAction(gameState, "move", "north");
+        Actions.executeAction(gameState, "move", "east");
+        Actions.executeAction(gameState, "take", "can");
+        Actions.executeAction(gameState, "move", "west");
+        Actions.executeAction(gameState, "move", "up");
+        Actions.executeAction(gameState, "move", "up");
+        Actions.executeAction(gameState, "move", "up");
+
+        assertTrue(gameState.checkGameWon());
     }
 }

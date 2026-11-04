@@ -9,6 +9,11 @@ public class App {
         boolean running = true;
         
         while(running){
+            if (gameState.checkGameWon()) {
+                running = false;
+                break;
+            }
+
             String currentRoomLabel = gameState.getCurrentRoomLabel();
             System.out.printf("%s > ", currentRoomLabel);
             String input = stdin.nextLine();
@@ -25,5 +30,7 @@ public class App {
 
             System.out.println(Actions.executeAction(gameState, verb, rest));
         }
+
+        System.out.println("You won the game!");
     }
 }

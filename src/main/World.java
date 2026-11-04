@@ -50,7 +50,8 @@ public class World {
     // For initialising gameState in App.java
     private static int initialRoom = 0;
     private static Map<String, Item> initialItemLocations = Map.of(
-        "key", new Item("key", "A small gold key", 1)
+        "key", new Item("key", "A small gold key", 1),
+        "can", new Item("can", "A greasy can full of oil", 3)
     );
     // To pass copy of door array for gameState
     private static int[][] copy2dArray(int[][] nestedArr) {
@@ -77,7 +78,12 @@ public class World {
         );
         int[][] testDoorMap = {
             {1, 0, -1, -1, -1, -1},
-            {1, 0, -1, -1, -1, -1}
+            {-1, -1, -1, 0, -1, -1},
+            {-1, 0, 0, -1, 0, -1},
+            {-1, -1, -1, 0, -1, -1},
+            {-1, -1, -1, -1, 0, 0},
+            {-1, -1, -1, -1, 0, 0},     
+            {-1, -1, -1, -1, -1, 0},
         };
         return new GameState(initialRoom, initialItemLocations, testDoorMap);
     }
