@@ -17,6 +17,7 @@ public class Actions {
             case "help" -> help();
             case "discard", "drop" -> discard(gameState, rest);
             case "map" -> World.printMap(gameState.currentRoom);
+            case "quit" -> "";
             default -> "Unrecognised command";
         };
     }
@@ -35,7 +36,7 @@ public class Actions {
         }
         // Check if exit is locked door
         if (gameState.isLockedDoor(direction)) {
-            return "Locked door. Unlock with key";
+            return "The door is locked, you need to find a key to unlock it.";
         }
          //check if they can move in that direction and return the next room name if they can
         int moveNext = World.map[gameState.currentRoom][direction];
@@ -44,7 +45,7 @@ public class Actions {
         }
         //update the current room and return the next room name
         gameState.currentRoom = moveNext;
-        return "You move " + rest + ".";
+        return "You move " + rest + "." + "\n" + World.roomDescriptions[gameState.currentRoom];
     }
 
     public static int sortDirection(String direction) {
@@ -259,14 +260,14 @@ public class Actions {
     static String discard (GameState gameState, String rest){
         Item item = gameState.itemLocations.get(rest);
         if (item == null){
-        return "item doesnt exist";
+        return "This item doesn't exist!";
         }
         if (item.getLocation() != -1){
-            return "You dont have that item";
+            return "You don't have that item!";
         }
        
         item.setLocation(gameState.currentRoom);
-        return "You dropped " + rest;
+        return "You dropped the " + rest;
         
         
 

@@ -55,7 +55,7 @@ public class ActionsTest {
         GameState testGameState = World.initialiseTestGameState();
         String message = Actions.executeAction(testGameState, "move", "east");
 
-        assertEquals(message, "You move east.");
+        assertTrue(message.contains("You move east."));
         assertEquals(1, testGameState.currentRoom);
     }
 
@@ -80,7 +80,7 @@ public class ActionsTest {
         GameState testGameState = World.initialiseTestGameState();
         String message = Actions.executeAction(testGameState, "move", "north");    
 
-        assertEquals(message, "Locked door. Unlock with key");
+        assertEquals(message, "The door is locked, you need to find a key to unlock it.");
     }
     
     // Give
