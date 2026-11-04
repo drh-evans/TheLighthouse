@@ -116,4 +116,38 @@ public class World {
     public static Map<String, Character> getCharacters() {
         return characters;
     }
+
+    public static String printMap(int currentRoom) {
+    String[] m = new String[7];
+    for (int i = 0; i < m.length; i++) {
+        m[i] = (i == currentRoom) ? "[X]" : "[ ]";
+    }
+
+    return """
+    
+                    %s Lamp Room
+
+                           |
+                           |
+
+                    %s Watch Room
+
+                           |
+                           |
+
+                    %s Spiral Stair
+                    
+                           |
+                           |
+
+                    %s Base of the Tower ---  %s Store Room
+
+                           |
+                           |
+
+                    %s Shore Path --- %s Keeper's Cottage
+
+        [X] = You are here
+        """.formatted(m[6], m[5], m[4], m[2], m[3], m[0], m[1]);
+}
 }
