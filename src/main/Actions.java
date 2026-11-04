@@ -9,6 +9,7 @@ public class Actions {
             case "move", "go" -> move(gameState, rest);
             case "take" -> take(gameState, rest);
             case "check", "inv", "inventory" -> inventory(gameState, rest);
+            case "examine" -> examine(gameState, rest);
             default -> "Unrecognised command";
 
         };
@@ -109,6 +110,45 @@ public class Actions {
         return getQuitGameResult(input);
     }
 
+    // Examine
+    public static String examine(GameState gameState, String rest) {
+        if (rest.equals("")) {
+            return examineRoom(gameState);
+        }
+        return examineItem(gameState, rest);
+    }
+
+    // Examine Item in Inventory or Room
+    public static String examineItem(GameState gameState, String rest) {
+        if (!gameState.doesItemExist(rest)) {
+            return "You can't see that here.";
+        }
+        boolean doesItemExistInCurrentRoom = gameState.isItemInCurrentRoom(rest);
+        boolean doesItemExistInInventory = gameState.itemLocations.get(rest).getLocation() == -1;
+
+        if (!doesItemExistInCurrentRoom && !doesItemExistInInventory) {
+            return "You can't see that here.";
+        }
+        return "You examine the " + rest + " closely and see: " + descriptionOfItem(gameState, rest);
+    }
+
+    // Examine specific room
+    public static String examineRoom(GameState gameState) {
+        String itemsFound = "";
+        for (Item item : gameState.itemLocations.values()) {
+            if (item.getLocation() == gameState.currentRoom) {
+                itemsFound += item.getName() + ", ";
+            }
+        }
+        if (!itemsFound.equals("")) {
+            // substring to remove the last comma and space
+            return "You examined the room closely and noticed the following items: " + itemsFound.substring(0, itemsFound.length() - 2);
+        }
+        return "You thoroughly examined the room but found nothing of interest.";
+    }
+
+    // Helper methods
+
     private static boolean getQuitGameResult(String input) {
         if (input.equals("y")) {
             System.out.println("Quitting game...");
@@ -120,5 +160,9 @@ public class Actions {
     private static String getStringInput() {
         Scanner stdin = new Scanner(System.in);
         return stdin.nextLine().toLowerCase();
+    }
+
+    private static String descriptionOfItem(GameState gameState, String item) {
+        return gameState.itemLocations.get(item).getDescription();
     }
 }
