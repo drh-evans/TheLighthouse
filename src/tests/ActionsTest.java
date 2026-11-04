@@ -5,6 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import main.*;
 
 public class ActionsTest {
+    @Test 
+    void unlockDoorHappyPath() {
+        GameState testGameState = World.initialiseTestGameState();
+        String message = Actions.executeAction(testGameState, "unlock", "door");
+        assertEquals(message, "Unlocked the north door!");
+    }
+
     @Test
     void takeItemHappyPath() {
         GameState testGameState = World.initialiseTestGameState();
