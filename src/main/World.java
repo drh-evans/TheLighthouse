@@ -85,7 +85,7 @@ public class World {
         Map<String, Item> initialItemLocations = Map.of(
             "lantern", new Item("lantern", "A bright lantern", 0),
             "apple", new Item("apple", "A crisp red apple", 0), // Location -1 = Inventory
-            "key", new Item("key", "A small gold key", 1)
+            "key", new Item("key", "A small gold key", -2)
         );
 
         int[][] testDoorMap = {

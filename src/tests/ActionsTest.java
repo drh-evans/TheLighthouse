@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import main.*;
 
 public class ActionsTest {
+    // Unlock
     @Test 
     void unlockDoorHappyPath() {
         GameState testGameState = World.initialiseTestGameState();
@@ -12,6 +13,7 @@ public class ActionsTest {
         assertEquals(message, "Unlocked the north door!");
     }
 
+    // Take
     @Test
     void takeItemHappyPath() {
         GameState testGameState = World.initialiseTestGameState();
@@ -29,6 +31,7 @@ public class ActionsTest {
         assertEquals(message, "No such item in game");
     }
 
+    // Inventory
     @Test
     void checkEmptyInventoryTest() {
         GameState testGameState = World.initialiseTestGameState();
@@ -46,6 +49,7 @@ public class ActionsTest {
         assertEquals(message, "Inventory: apple");
     }
 
+    // Move
     @Test
     void moveAnyDirectionTest() {
         GameState testGameState = World.initialiseTestGameState();
@@ -79,6 +83,7 @@ public class ActionsTest {
         assertEquals(message, "Locked door. Unlock with key");
     }
     
+    // Give
     @Test 
     void giveRequiredItemTest() {
         GameState testGameState = World.initialiseTestGameState();

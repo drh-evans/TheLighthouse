@@ -52,12 +52,11 @@ public class GameStateTest {
     @Test
     public void doesInventoryContainTest() {
         GameState gameState = World.initialiseTestGameState();
-        assertFalse(gameState.doesInventoryContain("key"));
+        assertFalse(gameState.doesInventoryContain("lantern"));
 
-        Actions.executeAction(gameState, "move", "east");
-        Actions.executeAction(gameState, "take", "key");
+        Actions.executeAction(gameState, "take", "lantern");
 
-        assertTrue(gameState.doesInventoryContain("key"));
+        assertTrue(gameState.doesInventoryContain("lantern"));
     }
 
     @Test 
@@ -96,8 +95,9 @@ public class GameStateTest {
         GameState gameState = World.initialiseTestGameState();
         assertFalse(gameState.checkGameWon());
 
+        Actions.executeAction(gameState, "take", "lantern");
         Actions.executeAction(gameState, "move", "east");
-        Actions.executeAction(gameState, "take", "key");
+        Actions.executeAction(gameState, "give", "lantern");
         Actions.executeAction(gameState, "move", "west");
         Actions.executeAction(gameState, "unlock", "door");
         Actions.executeAction(gameState, "move", "north");

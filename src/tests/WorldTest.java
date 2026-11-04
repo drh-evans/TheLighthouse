@@ -27,6 +27,6 @@ public class WorldTest {
         GameState testGameState = World.initialiseTestGameState();
 
         assertEquals(0, testGameState.currentRoom);
-        assertEquals(1, testGameState.itemLocations.get("key").getLocation());
+        assertEquals(0, testGameState.itemLocations.get("lantern").getLocation());
     }
 }
