@@ -46,6 +46,7 @@ public class Actions {
         return World.map[currentRoom][direction];
     }
 
+    //checks if the room they'r entering is the base of the tower
     public static Boolean isTowerDoor(int currentRoom, int direction){
         return (currentRoom == 0 && direction == 0) || (currentRoom == 2 && direction == 2);
 
