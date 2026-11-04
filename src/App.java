@@ -42,6 +42,12 @@ public class App {
                 running = Actions.quit();
             }
 
+            if (rest.equals("") && verb.equals("restart")) {
+                gameState = World.initialiseGameState();
+                System.out.println("Game has been restarted.");
+                continue;
+            }
+
             System.out.println(Actions.executeAction(gameState, verb, rest));
         }
 
