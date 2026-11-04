@@ -189,15 +189,13 @@ public class Actions {
     private static String descriptionOfItem(GameState gameState, String item) {
         return gameState.itemLocations.get(item).getDescription();
     }
-    // look
+    // Look
     static String look(GameState gameState){
-    String [] directions = {
-        "north", "east", "south", "west", "up", "down"
-    };
     StringBuilder exits = new StringBuilder();
-    for (int i = 0; i < directions.length; i++){
-        if(nextRoom(gameState.currentRoom, i) != -1){
-            exits.append(directions[i]).append("\n");
+    for (int i = 0; i < World.directionNames.length; i++){
+        int nextRoom = World.map[gameState.currentRoom][i];
+        if(nextRoom != -1){
+            exits.append(World.directionNames[i]).append("\n");
         }
     }
     if (exits.length() == 0){
@@ -219,6 +217,4 @@ public class Actions {
                 help - Displays available commands
                 """;
     }
-
-
 }

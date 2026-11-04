@@ -38,6 +38,15 @@ public class World {
         "Lamp Room"
     };
 
+    public static final String[] directionNames = {
+        "north",
+        "east",
+        "south",
+        "west",
+        "up",
+        "down"
+    };
+
     // For initialising gameState in App.java
     private static int initialRoom = 0;
     private static Map<String, Item> initialItemLocations = Map.of(
