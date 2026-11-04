@@ -16,6 +16,7 @@ public class Actions {
             case "look" -> look(gameState);
             case "help" -> help();
             case "discard", "drop" -> discard(gameState, rest);
+            case "map" -> World.printMap(gameState.currentRoom);
             default -> "Unrecognised command";
         };
     }
