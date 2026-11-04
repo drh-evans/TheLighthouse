@@ -29,6 +29,9 @@ public class Actions {
         //check if they can move in that direction and return the next room name if they can
         int moveNext = nextRoom(gameState.currentRoom, direction);
         if (moveNext == -1) {
+            if (isTowerDoor(gameState.currentRoom, direction)){
+                return "The tower door is locked.";
+            }
             return "You are not able to move" + rest + " in this room";
         }
         //update the current room and return the next room name
@@ -38,7 +41,15 @@ public class Actions {
 
     //returns the next room number based on the current room and the direction given
     public static int nextRoom(int currentRoom, int direction) {
+        if (isTowerDoor(currentRoom, direction))
+            return -1;
         return World.map[currentRoom][direction];
+    }
+
+    //checks if the room they'r entering is the base of the tower
+    public static Boolean isTowerDoor(int currentRoom, int direction){
+        return (currentRoom == 0 && direction == 0) || (currentRoom == 2 && direction == 2);
+
     }
 
     public static int sortDirection(String direction) {
