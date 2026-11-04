@@ -8,7 +8,7 @@ public class App {
                                             You find yourself on the shore of the Gower as a storm rages around you. In the distance you 
                                             notice a ship sailing through the darkness towards land. You spot an old lighthouse in the 
                                             distance and you decide to head towards it to find shelter and warn the boat crew that they 
-                                            are approaching land. You wonder what secrets await you inside the lighthouseon this gloomy night. 
+                                            are approaching land. You wonder what secrets await you inside the lighthouse on this gloomy night. 
                                             """;
 
     public static void main(String[] args) throws Exception {
@@ -21,6 +21,8 @@ public class App {
                 System.out.println(WELCOME_MESSAGE);
                 System.out.println(INTRO_STORY);
                 isFirstRun = false;
+            }
+
             if (gameState.checkGameWon()) {
                 running = false;
                 break;
