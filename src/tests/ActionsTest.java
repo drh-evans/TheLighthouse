@@ -45,4 +45,39 @@ public class ActionsTest {
 
         assertEquals(message, "Inventory: apple");
     }
+
+    @Test
+    void moveAnyDirectionTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        String message = Actions.executeAction(testGameState, "move", "east");
+
+        assertEquals(message, "You move east.");
+        assertEquals(1, testGameState.currentRoom);
+    }
+
+    @Test
+    void moveInvalidDirectionTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        String message = Actions.executeAction(testGameState, "move", "up");    
+
+        assertEquals(message, "You are not able to move up in this room");
+    }
+
+    @Test
+    void moveNotRecognisedDirectionTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        String message = Actions.executeAction(testGameState, "move", "sideways");    
+
+        assertEquals(message, "That is not a valid direction ");
+    }
+
+    @Test
+    void moveLockedDoorTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        String message = Actions.executeAction(testGameState, "move", "north");    
+
+        assertEquals(message, "Locked door. Unlock with key");
+    }
+    
+    
 }
