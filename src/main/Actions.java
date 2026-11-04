@@ -9,6 +9,8 @@ public class Actions {
             case "move", "go" -> move(gameState, rest);
             case "take" -> take(gameState, rest);
             case "check", "inv", "inventory" -> inventory(gameState, rest);
+            case "look" -> look(gameState);
+            case "help" -> help();
             default -> "Unrecognised command";
 
         };
@@ -121,4 +123,36 @@ public class Actions {
         Scanner stdin = new Scanner(System.in);
         return stdin.nextLine().toLowerCase();
     }
+    // look
+    static String look(GameState gameState){
+    String [] directions = {
+        "north", "east", "south", "west", "up", "down"
+    };
+    StringBuilder exits = new StringBuilder();
+    for (int i = 0; i < directions.length; i++){
+        if(nextRoom(gameState.currentRoom, i) != -1){
+            exits.append(directions[i]).append("\n");
+        }
+    }
+    if (exits.length() == 0){
+        return "No Available Exits";
+    }
+    return "Available Exits: \n" + exits;
+
+    }
+    // Help command 
+    static String help(){
+        return """
+                Available commands: 
+                move <direction> - Lets you move to that direction
+                go <direction> - Functions the same as move
+                Look - Shows available exits
+                Examine <room> - Shows all the items in the room
+                Examine <item> - Gives a description of the item 
+                inventory - Shows inventory
+                help - Displays available commands
+                """;
+    }
+
+
 }
