@@ -48,11 +48,15 @@ public class World {
     };
 
     // For initialising gameState in App.java
+    // TODO: Move into initialise function
     private static int initialRoom = 0;
+
     private static Map<String, Item> initialItemLocations = Map.of(
+        "lantern", new Item("lantern", "A bright lantern", 0),
         "key", new Item("key", "A small gold key", 1),
         "oil can", new Item("oil can", "A greasy can full of oil", 3)
     );
+
     // To pass copy of door array for gameState
     private static int[][] copy2dArray(int[][] nestedArr) {
         int[][] resultArr = new int[nestedArr.length][];
@@ -64,18 +68,25 @@ public class World {
         return resultArr;
     }
 
+    private static Map<String, Character> characters = Map.of(
+        "keeper", new Character("Keeper", 1, new String[] {"key"}, "lantern")
+    );
+
     public static GameState initialiseGameState() {
-        return new GameState(initialRoom, initialItemLocations, copy2dArray(doorMap));
+        return new GameState(initialRoom, initialItemLocations, copy2dArray(doorMap), characters);
     }
 
     // For initialising gameState for testing
     public static GameState initialiseTestGameState() {
         // Test vals
         int initialRoom = 0;
+
         Map<String, Item> initialItemLocations = Map.of(
-            "apple", new Item("apple", "A crisp red apple", 0),
+            "lantern", new Item("lantern", "A bright lantern", 0),
+            "apple", new Item("apple", "A crisp red apple", 0), // Location -1 = Inventory
             "key", new Item("key", "A small gold key", 1)
         );
+
         int[][] testDoorMap = {
             {1, 0, -1, -1, -1, -1},
             {-1, -1, -1, 0, -1, -1},
@@ -85,7 +96,12 @@ public class World {
             {-1, -1, -1, -1, 0, 0},     
             {-1, -1, -1, -1, -1, 0},
         };
-        return new GameState(initialRoom, initialItemLocations, testDoorMap);
+
+        Map<String, Character> testCharacters = Map.of(
+            "keeper", new Character("Keeper", 1, new String[] {"key"}, "lantern")
+        );
+
+        return new GameState(initialRoom, initialItemLocations, testDoorMap, testCharacters);
     }
 
     public static int getInitialRoom() {
@@ -94,5 +110,9 @@ public class World {
 
     public static Map<String, Item> getInitialItemLocations() {
         return initialItemLocations;
+    }
+
+    public static Map<String, Character> getCharacters() {
+        return characters;
     }
 }

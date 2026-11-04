@@ -64,11 +64,11 @@ public class ActionsTest {
     }
 
     @Test
-    void moveNotRecognisedDirectionTest() {
+    void moveNotRecognisedDirectionTest() throws Exception {
         GameState testGameState = World.initialiseTestGameState();
         String message = Actions.executeAction(testGameState, "move", "sideways");    
 
-        assertEquals(message, "That is not a valid direction ");
+        assertEquals(message, "That is not a valid direction.");
     }
 
     @Test

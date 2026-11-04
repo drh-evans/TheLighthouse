@@ -7,15 +7,18 @@ public class GameState {
     public int currentRoom;
     public HashMap<String, Item> itemLocations;
     public int[][] doorStates;
+    public HashMap<String, Character> characters;
 
     public GameState(
         int currentRoom, 
         Map<String, Item> initialItemLocations,
-        int[][] doorStates
+        int[][] doorStates,
+        Map<String, Character> characters
     ) {
         this.currentRoom = currentRoom;
         this.itemLocations = new HashMap<>(initialItemLocations);
         this.doorStates = doorStates;
+        this.characters = new HashMap<>(characters);
     }
 
     public String getCurrentRoomLabel() {
