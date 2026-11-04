@@ -21,6 +21,8 @@ public class App {
                 System.out.println(WELCOME_MESSAGE);
                 System.out.println(INTRO_STORY);
                 isFirstRun = false;
+            }
+
             if (gameState.checkGameWon()) {
                 running = false;
                 break;
