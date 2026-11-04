@@ -2,11 +2,13 @@ package main;
 
 import java.util.stream.Collectors;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Actions {
     public static String executeAction(GameState gameState, String verb, String rest) {
         return switch (verb) {
             case "move", "go" -> move(gameState, rest);
+            case "unlock" -> unlock(gameState, rest);
             case "take" -> take(gameState, rest);
             case "check", "inv", "inventory" -> inventory(gameState, rest);
             default -> "Unrecognised command";
@@ -26,30 +28,18 @@ public class Actions {
         if (direction == -1) {
             return "That is not a valid direction.";
         }
-        //check if they can move in that direction and return the next room name if they can
-        int moveNext = nextRoom(gameState.currentRoom, direction);
+        // Check if exit is locked door
+        if (gameState.isLockedDoor(direction)) {
+            return "Locked door. Unlock with key";
+        }
+         //check if they can move in that direction and return the next room name if they can
+        int moveNext = World.map[gameState.currentRoom][direction];
         if (moveNext == -1) {
-            if (isTowerDoor(gameState.currentRoom, direction)){
-                return "The tower door is locked.";
-            }
             return "You are not able to move" + rest + " in this room";
         }
         //update the current room and return the next room name
         gameState.currentRoom = moveNext;
         return "You move " + rest + ".";
-    }
-
-    //returns the next room number based on the current room and the direction given
-    public static int nextRoom(int currentRoom, int direction) {
-        if (isTowerDoor(currentRoom, direction))
-            return -1;
-        return World.map[currentRoom][direction];
-    }
-
-    //checks if the room they'r entering is the base of the tower
-    public static Boolean isTowerDoor(int currentRoom, int direction){
-        return (currentRoom == 0 && direction == 0) || (currentRoom == 2 && direction == 2);
-
     }
 
     public static int sortDirection(String direction) {
@@ -62,6 +52,38 @@ public class Actions {
             case "down" -> 5;
             default -> -1;
         };
+    }
+
+    // Unlock
+    static String unlock(GameState gameState, String rest) {
+        // If rest is direction
+        String[] directions = new String[] {"north", "east", "south", "north", "up", "down"};
+        int currentRoom = gameState.currentRoom;
+        if (Arrays.asList(directions).contains(rest)) {
+            // Need to check if door
+            int directionIndex = sortDirection(rest);
+            int lockedVal = gameState.doorStates[currentRoom][directionIndex];
+
+            if (lockedVal == 0) return "This door is open";
+            else if (lockedVal == 1) {
+                boolean hasKey = gameState.doesInventoryContain("key");
+                if (hasKey) {
+                    gameState.doorStates[currentRoom][directionIndex] = 0;
+                    return "Door unlocked!";
+                } else return "Need key to unlock this door";
+            }
+            else return "Nothing here to unlock"; 
+        } else if (rest.equals("door")) {
+            int foundLockedDoorIndex = gameState.findLockedDoorForCurrentRoom(gameState);
+            if (foundLockedDoorIndex == -1) return "No locked door here";
+            else {
+                // Find direction
+                String direction = directions[foundLockedDoorIndex];
+                gameState.doorStates[currentRoom][foundLockedDoorIndex] = 0;
+                return "Unlocked the " + direction + " door!";
+            }
+            
+        } else return "Unlock what?";
     }
 
     // Take
