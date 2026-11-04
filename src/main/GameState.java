@@ -59,6 +59,6 @@ public class GameState {
 
     public boolean checkGameWon() {
         // return this.currentRoom == 6 && isItemInCurrentRoom("can");
-        return this.currentRoom == 6 && getItemLocation("can") == -1;
+        return this.currentRoom == 6 && getItemLocation("oil can") == -1;
     }
 }

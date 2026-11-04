@@ -84,7 +84,7 @@ public class GameStateTest {
         Actions.executeAction(gameState, "unlock", "door");
         Actions.executeAction(gameState, "move", "north");
         Actions.executeAction(gameState, "move", "east");
-        Actions.executeAction(gameState, "take", "can");
+        Actions.executeAction(gameState, "take", "oil can");
         Actions.executeAction(gameState, "move", "west");
         Actions.executeAction(gameState, "move", "up");
         Actions.executeAction(gameState, "move", "up");

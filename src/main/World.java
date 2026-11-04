@@ -51,7 +51,7 @@ public class World {
     private static int initialRoom = 0;
     private static Map<String, Item> initialItemLocations = Map.of(
         "key", new Item("key", "A small gold key", 1),
-        "can", new Item("can", "A greasy can full of oil", 3)
+        "oil can", new Item("oil can", "A greasy can full of oil", 3)
     );
     // To pass copy of door array for gameState
     private static int[][] copy2dArray(int[][] nestedArr) {
