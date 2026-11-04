@@ -15,7 +15,6 @@ public class Actions {
             case "look" -> look(gameState);
             case "help" -> help();
             default -> "Unrecognised command";
-
         };
     }
 
@@ -38,7 +37,7 @@ public class Actions {
          //check if they can move in that direction and return the next room name if they can
         int moveNext = World.map[gameState.currentRoom][direction];
         if (moveNext == -1) {
-            return "You are not able to move" + rest + " in this room";
+            return "You are not able to move " + rest + " in this room";
         }
         //update the current room and return the next room name
         gameState.currentRoom = moveNext;
@@ -77,7 +76,7 @@ public class Actions {
             }
             else return "Nothing here to unlock"; 
         } else if (rest.equals("door")) {
-            int foundLockedDoorIndex = gameState.findLockedDoorForCurrentRoom(gameState);
+            int foundLockedDoorIndex = gameState.findLockedDoorForCurrentRoom();
             if (foundLockedDoorIndex == -1) return "No locked door here";
             else {
                 // Find direction

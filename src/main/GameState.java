@@ -34,13 +34,20 @@ public class GameState {
         return this.itemLocations.get(item).getLocation() == -1;
     }
 
+    public int getItemLocation(String item) {
+        if (!doesItemExist(item)) return -1;
+        else {
+            return this.itemLocations.get(item).getLocation();
+        }
+    }
+
     public boolean isLockedDoor(int direction) {
         return this.doorStates[this.currentRoom][direction] == 1;
     }
 
-    public int findLockedDoorForCurrentRoom(GameState gameState) {
+    public int findLockedDoorForCurrentRoom() {
         int foundLockedDoorIndex = -1;
-        int[] currentRoomDoorArr = gameState.doorStates[gameState.currentRoom];
+        int[] currentRoomDoorArr = this.doorStates[this.currentRoom];
         
         for (int i = 0; i <currentRoomDoorArr.length; i++) {
             if (currentRoomDoorArr[i] == 1) {
@@ -49,4 +56,9 @@ public class GameState {
         }
         return foundLockedDoorIndex;
     } 
+
+    public boolean checkGameWon() {
+        // return this.currentRoom == 6 && isItemInCurrentRoom("can");
+        return this.currentRoom == 6 && getItemLocation("oil can") == -1;
+    }
 }

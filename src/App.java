@@ -21,6 +21,9 @@ public class App {
                 System.out.println(WELCOME_MESSAGE);
                 System.out.println(INTRO_STORY);
                 isFirstRun = false;
+            if (gameState.checkGameWon()) {
+                running = false;
+                break;
             }
 
             String currentRoomLabel = gameState.getCurrentRoomLabel();
@@ -39,5 +42,7 @@ public class App {
 
             System.out.println(Actions.executeAction(gameState, verb, rest));
         }
+
+        System.out.println("You won the game!");
     }
 }
