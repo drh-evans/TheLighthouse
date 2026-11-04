@@ -10,6 +10,7 @@ public class Actions {
             case "take" -> take(gameState, rest);
             case "check", "inv", "inventory" -> inventory(gameState, rest);
             case "look" -> look(gameState);
+            case "help" -> help();
             default -> "Unrecognised command";
 
         };
@@ -138,6 +139,19 @@ public class Actions {
     }
     return "Available Exits: \n" + exits;
 
+    }
+    // Help command 
+    static String help(){
+        return """
+                Available commands: 
+                move <direction> - Lets you move to that direction
+                go <direction> - Functions the same as move
+                Look - Shows available exits
+                Examine <room> - Shows all the items in the room
+                Examine <item> - Gives a description of the item 
+                inventory - Shows inventory
+                help - Displays available commands
+                """;
     }
 
 
