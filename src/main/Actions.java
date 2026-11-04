@@ -210,11 +210,12 @@ public class Actions {
                 Available commands: 
                 move <direction> - Lets you move to that direction
                 go <direction> - Functions the same as move
-                Look - Shows available exits
-                Examine <room> - Shows all the items in the room
-                Examine <item> - Gives a description of the item 
+                look - Shows available exits
+                examine - Shows all the items in the current room
+                examine <item> - Gives a description of the item 
                 inventory - Shows inventory
                 help - Displays available commands
+                quit - Exits the game
                 """;
     }
 }
