@@ -56,20 +56,7 @@ public class World {
         "up",
         "down"
     };
-
-    // For initialising gameState in App.java
-    // TODO: Move into initialise function
-    private static int initialRoom = 0;
-
-    // Location ints >= 0 refer to rooms
-    // Location int -1 = In player inventory
-    // Location int -2 = In a character's inventory
-    private static Map<String, Item> initialItemLocations = Map.of(
-        "lantern", new Item("lantern", "A bright lantern", 0),
-        "key", new Item("key", "A small gold key", -2),
-        "oil can", new Item("oil can", "A greasy can full of oil", 3)
-    );
-
+    
     // To pass copy of door array for gameState
     private static int[][] copy2dArray(int[][] nestedArr) {
         int[][] resultArr = new int[nestedArr.length][];
@@ -80,12 +67,24 @@ public class World {
         }
         return resultArr;
     }
-
-    private static Map<String, Character> characters = Map.of(
-        "keeper", new Character("Keeper", 1, "key", "lantern")
-    );
-
+    
+    // For initialising gameState in App.java
     public static GameState initialiseGameState() {
+        int initialRoom = 0;
+
+        // Location ints >= 0 refer to rooms
+        // Location int -1 = In player inventory
+        // Location int -2 = In a character's inventory
+        Map<String, Item> initialItemLocations = Map.of(
+            "lantern", new Item("lantern", "A bright lantern", 0),
+            "key", new Item("key", "A small gold key", -2),
+            "oil can", new Item("oil can", "A greasy can full of oil", 3)
+        );
+
+        Map<String, Character> characters = Map.of(
+            "keeper", new Character("Keeper", 1, "key", "lantern")
+        );
+
         return new GameState(initialRoom, initialItemLocations, copy2dArray(doorMap), characters);
     }
 
@@ -115,18 +114,6 @@ public class World {
         );
 
         return new GameState(initialRoom, initialItemLocations, testDoorMap, testCharacters);
-    }
-
-    public static int getInitialRoom() {
-        return initialRoom;
-    }
-
-    public static Map<String, Item> getInitialItemLocations() {
-        return initialItemLocations;
-    }
-
-    public static Map<String, Character> getCharacters() {
-        return characters;
     }
 
     public static String printMap(int currentRoom) {
