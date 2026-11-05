@@ -1,18 +1,33 @@
-## Getting Started
+# The Lighthouse
+A text adventure game
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Table of contents
 
-## Folder Structure
+> 1. [Overview](#overview)
+> 2. [Development methodology](#approach)
+> 3. [Testing](#testing)
+> 4. [Acknowledgements](#acknowledgements)
 
-The workspace contains two folders by default, where:
+## Overview
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+[Back to top](#the-lighthouse)
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Overview text
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Development methodology
 
-## Dependency Management
+[Back to top](#the-lighthouse)
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Dev methodology text
+
+## Testing
+
+[Back to top](#the-lighthouse)
+
+Testing text
+
+## Acknowledgements
+
+[Back to top](#the-lighthouse)
+
+Acknowledgement text
