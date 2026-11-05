@@ -33,12 +33,11 @@ public class Character {
 
     public void setHasItem(String item) {
         this.hasItem = item;
+        if (item.equals(this.requiredItem)) {
+            this.hasReceivedRequiredItem = true;
+        }
     }
 
-    public void addItemToInventory(String item) {
-        this.inventory.add(item);
-        hasReceivedRequiredItem = true;
-    }
     public String getRequiredItem() {
         return this.requiredItem;
     }
