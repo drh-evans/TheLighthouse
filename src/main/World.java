@@ -86,6 +86,17 @@ public class World {
     );
 
     public static GameState initialiseGameState() {
+        initialItemLocations = Map.of(
+        "lantern", new Item("lantern", "A bright lantern", 0),
+        "key", new Item("key", "A small gold key", -2),
+        "oil can", new Item("oil can", "A greasy can full of oil", 3)
+    );
+    
+        characters = Map.of(
+        "keeper", new Character("Keeper", 1, "key", "lantern")
+    );
+
+    
         return new GameState(initialRoom, initialItemLocations, copy2dArray(doorMap), characters);
     }
 
