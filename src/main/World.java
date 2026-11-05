@@ -39,6 +39,16 @@ public class World {
         "Lamp Room"
     };
 
+    public static final String[] roomDescriptions = {
+        "You are on a cold windy shore path. You can see the door to the lighthouse to your north but it is locked, and to the east you can see a dimly lit cottage.\n",
+        "You have entered the keeper's cottage, it's pleasantly warm and inviting compared to the storm outside.\nThe keeper is sat in the corner by the fireplace, maybe he has something useful for you.\n",
+        "You are at the base of the lighthouse tower. You notice an archway to your north that leads to a staircase, and behind you to the south is a door that leads back to the shore path. You also notice a rotting door to your east, where could that lead?\n",
+        "You have entered the store room through the door, which is now to your east.\nA strong smell of fumes fills the air and you notice a stash of old supplies and equipment.\n",
+        "You are on the spiral staircase. There is an archway to the south that leads back to the base of the tower, and a door up that leads to the next floor.\n",
+        "Exhausted, you've entered the watch room. You notice a small rusting ladder, infested with bugs and cobwebs and a rusty generator that hasn't seen power in years.\n",
+        "You have made it to the lamp room, the top of the tower. You feel the wind push against you as it blows through the cracked glass and you can see the waves roaring below you as the boat continues towards land, you notice that the lamp is not working as it could use with some fuel to light it up.\n"
+    };
+
     public static final String[] directionNames = {
         "north",
         "east",

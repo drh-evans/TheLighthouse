@@ -3,7 +3,23 @@ import java.util.Scanner;
 
 public class App {
     static Scanner stdin = new Scanner(System.in);
-    private static final String WELCOME_MESSAGE = "\nWelcome to the Lighthouse Text Adventure Game! Type 'help' for a list of commands. \n";
+    // ASCII art made on https://www.asciiart.eu/ascii-draw-studio/app using their built in fonts and tool
+    private static final String WELCOME_MESSAGE = 
+              "\n\n                         ████████╗██╗  ██╗███████╗                             \n" + //
+                "                         ╚══██╔══╝██║  ██║██╔════╝                             \n" + //
+                "                            ██║   ███████║█████╗                               \n" + //
+                "                            ██║   ██╔══██║██╔══╝                               \n" + //
+                "                            ██║   ██║  ██║███████╗                             \n" + //
+                "                            ╚═╝   ╚═╝  ╚═╝╚══════╝                             \n" + //
+                "                                                                               \n" + //
+                "██╗     ██╗ ██████╗ ██╗  ██╗████████╗██╗  ██╗ ██████╗ ██╗   ██╗███████╗███████╗\n" + //
+                "██║     ██║██╔════╝ ██║  ██║╚══██╔══╝██║  ██║██╔═══██╗██║   ██║██╔════╝██╔════╝\n" + //
+                "██║     ██║██║  ███╗███████║   ██║   ███████║██║   ██║██║   ██║███████╗█████╗  \n" + //
+                "██║     ██║██║   ██║██╔══██║   ██║   ██╔══██║██║   ██║██║   ██║╚════██║██╔══╝  \n" + //
+                "███████╗██║╚██████╔╝██║  ██║   ██║   ██║  ██║╚██████╔╝╚██████╔╝███████║███████╗\n" + //
+                "╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝\n";
+
+    private static final String INSTRUCTIONS = "\n\nWelcome to the Lighthouse Text Adventure Game by Jason's Argonauts!\n          Feeling stuck? Type 'help' for a list of commands.\n";
     private static final String INTRO_STORY = """
                                             You find yourself on the shore of the Gower as a storm rages around you. In the distance you 
                                             notice a ship sailing through the darkness towards land. You spot an old lighthouse in the 
@@ -15,10 +31,12 @@ public class App {
         GameState gameState = World.initialiseGameState();
         boolean running = true;
         boolean isFirstRun = true;
+        boolean hasQuit = false;
         
         while(running){
             if (isFirstRun) {
                 System.out.println(WELCOME_MESSAGE);
+                System.out.println(INSTRUCTIONS);
                 System.out.println(INTRO_STORY);
                 isFirstRun = false;
             }
@@ -38,19 +56,25 @@ public class App {
                 rest = result[1];
             }
 
-            if (rest.equals("") && verb.equals("quit")) {
-                running = Actions.quit();
-            }
-
             if (rest.equals("") && verb.equals("restart")) {
                 gameState = World.initialiseGameState();
                 System.out.println("Game has been restarted.");
                 continue;
             }
 
-            System.out.println(Actions.executeAction(gameState, verb, rest));
+            System.out.println("\n" + Actions.executeAction(gameState, verb, rest));
+
+            if (rest.equals("") && verb.equals("quit")) {
+                running = Actions.quit();
+                hasQuit = true;
+            }
         }
 
-        System.out.println("You won the game!");
+        if (!hasQuit) {
+            System.out.println("You had collected an oil canister on your way to the lamp room, allowing you to light the lamps and save the ship from crashing into the rocks! You have won the game!");
+        } else {
+            System.out.println("You failed to light the lamp and the ship crashed into the rocks. You have lost the game.");
+        }
+        System.out.println("\nThank you for playing The Lighthouse!\nCreated by Jason's Argonauts: Jason Smith, Gareth Llewelyn, Suhayb Musa, and Rhys Evans.");
     }
 }
