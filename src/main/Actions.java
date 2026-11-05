@@ -257,8 +257,9 @@ public class Actions {
                 inv - same as inventory
                 help - Displays available commands
                 quit - Exits the game
-                discard = lets you discard items from the inventory
-                drop = behaves the same as discard
+                discard - lets you discard items from the inventory
+                drop - behaves the same as discard
+                give <item> - gives the item to the character in the room if they require it
                 """;
     }
     // Discard items 

@@ -83,7 +83,7 @@ public class App {
         // verb required to avoid printing dialogue when giving an item to a character
             if (roomCharacter != null && !roomCharacter.getHasReceivedRequiredItem()) {
                 System.out.println("The " + roomCharacter.getName() + " mutters, \"It's dark in here. Have you seen the " + roomCharacter.getRequiredItem() + " anywhere?\"");
-            } else if (roomCharacter != null && roomCharacter.getHasReceivedRequiredItem() && !verb.equals("give")) {
+            } else if (roomCharacter != null && roomCharacter.getHasReceivedRequiredItem() && verb.equals("move")) {
                 System.out.println("The " + roomCharacter.getName() + " greets you warmly and says, \"Thank you for bringing me the " + roomCharacter.getRequiredItem() + "!\"");
             }
     }
