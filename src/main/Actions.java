@@ -255,12 +255,14 @@ public class Actions {
                 *                examine - Shows all the items in the current room       *
                 *                examine <item> - Gives a description of the item        *
                 *                inventory - Shows inventory                             *
-                *                inv - same as inventory                                 *
+                *                inv - Same as inventory                                 *
                 *                help - Displays available commands                      *
-                *                quit - Exits the game                                   *
-                *                discard - lets you discard items from the inventory     *
-                *                drop - behaves the same as discard                      *
-                *                give <item> - gives an item to a character in the room  *
+                *                quit - Exists the game                                  *
+                *                restart - Restarts the game                             *
+                *                give <item> - Gives an item to a character in the room  *
+                *                take <item> - Takes an item from the room               *
+                *                discard <item> - Discards an item from the inventory    *
+                *                drop <item> - Behaves the same as discard               *
                 **************************************************************************
                 """;
     }
