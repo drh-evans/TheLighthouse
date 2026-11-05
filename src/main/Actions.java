@@ -247,19 +247,21 @@ public class Actions {
     // Help command 
     static String help(){
         return """
-                Available commands: 
-                move <direction> - Lets you move to that direction
-                go <direction> - Functions the same as move
-                look - Shows available exits
-                examine - Shows all the items in the current room
-                examine <item> - Gives a description of the item 
-                inventory - Shows inventory
-                inv - same as inventory
-                help - Displays available commands
-                quit - Exits the game
-                discard - lets you discard items from the inventory
-                drop - behaves the same as discard
-                give <item> - gives the item to the character in the room if they require it
+                **************************************************************************
+                *   Available commands:                                                  *
+                *                move <direction> - Lets you move to that direction      *
+                *                go <direction> - Functions the same as move             *
+                *                look - Shows available exits                            *
+                *                examine - Shows all the items in the current room       *
+                *                examine <item> - Gives a description of the item        *
+                *                inventory - Shows inventory                             *
+                *                inv - same as inventory                                 *
+                *                help - Displays available commands                      *
+                *                quit - Exits the game                                   *
+                *                discard - lets you discard items from the inventory     *
+                *                drop - behaves the same as discard                      *
+                *                give <item> - gives an item to a character in the room  *
+                **************************************************************************
                 """;
     }
     // Discard items 
