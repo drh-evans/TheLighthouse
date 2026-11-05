@@ -136,8 +136,8 @@ public class Actions {
             character.addItemToInventory(rest);
             gameState.itemLocations.get(rest).setLocation(-2);
             gameState.itemLocations.get(characterItem).setLocation(-1);
-            return "Item given! You've received an item back!";
-        } else return "Character doesn't require that";
+            return "Aha, I've been looking for that! Take this " + characterItem + " as a reward!";
+        } else return "I don't need that item!";
     }
 
     // Check inventory

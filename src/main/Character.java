@@ -8,12 +8,18 @@ public class Character {
     private int location;
     private List<String> inventory;
     private String requiredItem;
+    private boolean hasReceivedRequiredItem;
 
     public Character(String name, int location, List<String> characterInventory, String requiredItem) {
         this.name = name;
         this.location = location;
         this.inventory = new ArrayList<>(characterInventory);
         this.requiredItem = requiredItem;
+        this.hasReceivedRequiredItem = false;
+    }
+
+    public boolean getHasReceivedRequiredItem() {
+        return this.hasReceivedRequiredItem;
     }
 
     public String getName() {
@@ -34,5 +40,6 @@ public class Character {
 
     public void addItemToInventory(String item) {
         this.inventory.add(item);
+        hasReceivedRequiredItem = true;
     }
 }

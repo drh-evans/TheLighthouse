@@ -1,4 +1,6 @@
 import main.*;
+import main.Character;
+
 import java.util.Scanner;
 
 public class App {
@@ -63,7 +65,8 @@ public class App {
             }
 
             System.out.println("\n" + Actions.executeAction(gameState, verb, rest));
-
+            printRoomDialogue(gameState, verb);
+            
             if (rest.equals("") && verb.equals("quit")) {
                 running = Actions.quit();
                 hasQuit = true;
@@ -76,5 +79,14 @@ public class App {
             System.out.println("You failed to light the lamp and the ship crashed into the rocks. You have lost the game.");
         }
         System.out.println("\nThank you for playing The Lighthouse!\nCreated by Jason's Argonauts: Jason Smith, Gareth Llewelyn, Suhayb Musa, and Rhys Evans.");
+    }
+
+    private static void printRoomDialogue(GameState gameState, String verb) {
+        Character roomCharacter = gameState.getRoomCharacter();
+            if (roomCharacter != null && !roomCharacter.getHasReceivedRequiredItem()) {
+                System.out.println("The " + roomCharacter.getName() + " mutters, \"It's dark in here. Have you seen the " + roomCharacter.getRequiredItem() + " anywhere?\"");
+            } else if (roomCharacter != null && roomCharacter.getHasReceivedRequiredItem() && !verb.equals("give")) {
+                System.out.println("The " + roomCharacter.getName() + " greets you warmly and says, \"Thank you for bringing me the " + roomCharacter.getRequiredItem() + "!\"");
+            }
     }
 }
