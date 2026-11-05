@@ -128,13 +128,15 @@ public class Actions {
 
         // Does character require item?
         boolean characterRequiresItem = character.getRequiredItem().equals(rest);
-        String characterItem = character
-            .getInventory().stream()
-            .findFirst().orElse(null);
+        // String characterItem = character
+        //     .getInventory().stream()
+        //     .findFirst().orElse(null);
 
+        
         if (characterRequiresItem) {
-            character.addItemToInventory(rest);
+            String characterItem = character.getHasItem();
             gameState.itemLocations.get(rest).setLocation(-2);
+            character.setHasItem(rest);
             gameState.itemLocations.get(characterItem).setLocation(-1);
             return "Item given! You've received an item back!";
         } else return "Character doesn't require that";
