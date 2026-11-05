@@ -5,12 +5,18 @@ public class Character {
     private int location;
     private String hasItem;
     private String requiredItem;
+    private boolean hasReceivedRequiredItem;
 
     public Character(String name, int location, String hasItem, String requiredItem) {
         this.name = name;
         this.location = location;
         this.hasItem = hasItem;
         this.requiredItem = requiredItem;
+        this.hasReceivedRequiredItem = false;
+    }
+
+    public boolean getHasReceivedRequiredItem() {
+        return this.hasReceivedRequiredItem;
     }
 
     public String getName() {
@@ -29,6 +35,10 @@ public class Character {
         this.hasItem = item;
     }
 
+    public void addItemToInventory(String item) {
+        this.inventory.add(item);
+        hasReceivedRequiredItem = true;
+    }
     public String getRequiredItem() {
         return this.requiredItem;
     }

@@ -40,7 +40,7 @@ public class World {
 
     public static final String[] roomDescriptions = {
         "You are on a cold windy shore path. You can see the door to the lighthouse to your north but it is locked, and to the east you can see a dimly lit cottage.\n",
-        "You have entered the keeper's cottage, it's pleasantly warm and inviting compared to the storm outside.\nThe keeper is sat in the corner by the fireplace, maybe he has something useful for you.\n",
+        "You have entered the keeper's cottage, it's pleasantly warm and inviting compared to the storm outside.\nThe Keeper is sat in the corner by the fireplace, maybe he has something useful for you.\n",
         "You are at the base of the lighthouse tower. You notice an archway to your north that leads to a staircase, and behind you to the south is a door that leads back to the shore path. You also notice a rotting door to your east, where could that lead?\n",
         "You have entered the store room through the door, which is now to your east.\nA strong smell of fumes fills the air and you notice a stash of old supplies and equipment.\n",
         "You are on the spiral staircase. There is an archway to the south that leads back to the base of the tower, and a door up that leads to the next floor.\n",

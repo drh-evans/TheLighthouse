@@ -1,4 +1,6 @@
 import main.*;
+import main.Character;
+
 import java.util.Scanner;
 
 public class App {
@@ -35,10 +37,7 @@ public class App {
         
         while(running){
             if (isFirstRun) {
-                System.out.println(WELCOME_MESSAGE);
-                System.out.println(INSTRUCTIONS);
-                System.out.println(INTRO_STORY);
-                isFirstRun = false;
+                isFirstRun = displayFirstRunMessage();
             }
 
             if (gameState.checkGameWon()) {
@@ -63,18 +62,53 @@ public class App {
             }
 
             System.out.println("\n" + Actions.executeAction(gameState, verb, rest));
-
+            printRoomDialogue(gameState, verb);
+            
             if (rest.equals("") && verb.equals("quit")) {
                 running = Actions.quit();
                 hasQuit = true;
             }
         }
+        displayEndgameMessage(hasQuit);
+    }
 
+    /**
+     * Prints dialogue from the character in the room if they exist and have not received their required item yet, 
+     * or if they have received it and the player is not giving them an item.
+     * @param gameState the current game state.
+     * @param verb the action of the player.
+     */
+    private static void printRoomDialogue(GameState gameState, String verb) {
+        Character roomCharacter = gameState.getRoomCharacter();
+        // verb required to avoid printing dialogue when giving an item to a character
+            if (roomCharacter != null && !roomCharacter.getHasReceivedRequiredItem()) {
+                System.out.println("The " + roomCharacter.getName() + " mutters, \"It's dark in here. Have you seen the " + roomCharacter.getRequiredItem() + " anywhere?\"");
+            } else if (roomCharacter != null && roomCharacter.getHasReceivedRequiredItem() && !verb.equals("give")) {
+                System.out.println("The " + roomCharacter.getName() + " greets you warmly and says, \"Thank you for bringing me the " + roomCharacter.getRequiredItem() + "!\"");
+            }
+    }
+
+    /**
+     * Displays the endgame message based on whether the player has quit or won the game.
+     * @param hasQuit boolean indicating if the player has quit the game.
+     */
+    private static void displayEndgameMessage(boolean hasQuit) {
         if (!hasQuit) {
             System.out.println("You had collected an oil canister on your way to the lamp room, allowing you to light the lamps and save the ship from crashing into the rocks! You have won the game!");
         } else {
             System.out.println("You failed to light the lamp and the ship crashed into the rocks. You have lost the game.");
         }
         System.out.println("\nThank you for playing The Lighthouse!\nCreated by Jason's Argonauts: Jason Smith, Gareth Llewelyn, Suhayb Musa, and Rhys Evans.");
+    }
+
+    /**
+     * Displays the welcome message, instructions, and introductory story to the player.
+     * @return boolean false to indicate that the first run message has been displayed.
+     */
+    private static boolean displayFirstRunMessage() {
+        System.out.println(WELCOME_MESSAGE);
+        System.out.println(INSTRUCTIONS);
+        System.out.println(INTRO_STORY);
+        return false;
     }
 }
