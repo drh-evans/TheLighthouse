@@ -9,8 +9,12 @@ public class ActionsTest {
     @Test 
     void unlockDoorHappyPath() {
         GameState testGameState = World.initialiseTestGameState();
-        String message = Actions.executeAction(testGameState, "unlock", "door");
-        assertEquals(message, "Unlocked the north door!");
+        testGameState.itemLocations.get("key").setLocation(0);
+        String message1 = Actions.executeAction(testGameState, "unlock", "door");
+        assertEquals(message1, "Need key to unlock this door");
+        Actions.executeAction(testGameState, "take", "key");
+        String message2 = Actions.executeAction(testGameState, "unlock", "door");
+        assertEquals(message2, "Unlocked the north door!");
     }
 
     // Take

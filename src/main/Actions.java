@@ -83,10 +83,15 @@ public class Actions {
             int foundLockedDoorIndex = gameState.findLockedDoorForCurrentRoom();
             if (foundLockedDoorIndex == -1) return "No locked door here";
             else {
-                // Find direction
-                String direction = directions[foundLockedDoorIndex];
-                gameState.doorStates[currentRoom][foundLockedDoorIndex] = 0;
-                return "Unlocked the " + direction + " door!";
+                // Check has key
+                boolean hasKey = gameState.doesInventoryContain("key");
+
+                if (hasKey) {
+                    gameState.doorStates[currentRoom][foundLockedDoorIndex] = 0;
+                    // return "Door unlocked!";
+                    String direction = directions[foundLockedDoorIndex];
+                    return "Unlocked the " + direction + " door!";
+                } else return "Need key to unlock this door";
             }
             
         } else return "Unlock what?";
