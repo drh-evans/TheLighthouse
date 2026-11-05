@@ -1,7 +1,6 @@
 package main;
 
 import java.util.Map;
-import java.util.List;
 
 public class World {
     static final int[][] map = {
@@ -62,6 +61,9 @@ public class World {
     // TODO: Move into initialise function
     private static int initialRoom = 0;
 
+    // Location ints >= 0 refer to rooms
+    // Location int -1 = In player inventory
+    // Location int -2 = In a character's inventory
     private static Map<String, Item> initialItemLocations = Map.of(
         "lantern", new Item("lantern", "A bright lantern", 0),
         "key", new Item("key", "A small gold key", -2),
@@ -80,7 +82,7 @@ public class World {
     }
 
     private static Map<String, Character> characters = Map.of(
-        "keeper", new Character("Keeper", 1, List.of("key"), "lantern")
+        "keeper", new Character("Keeper", 1, "key", "lantern")
     );
 
     public static GameState initialiseGameState() {
@@ -109,7 +111,7 @@ public class World {
         };
 
         Map<String, Character> testCharacters = Map.of(
-            "keeper", new main.Character("Keeper", 1, List.of("key"), "lantern")
+            "keeper", new main.Character("Keeper", 1, "key", "lantern")
         );
 
         return new GameState(initialRoom, initialItemLocations, testDoorMap, testCharacters);

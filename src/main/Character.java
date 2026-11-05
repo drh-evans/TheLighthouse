@@ -1,19 +1,16 @@
 package main;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Character {
     private String name;
     private int location;
-    private List<String> inventory;
+    private String hasItem;
     private String requiredItem;
     private boolean hasReceivedRequiredItem;
 
-    public Character(String name, int location, List<String> characterInventory, String requiredItem) {
+    public Character(String name, int location, String hasItem, String requiredItem) {
         this.name = name;
         this.location = location;
-        this.inventory = new ArrayList<>(characterInventory);
+        this.hasItem = hasItem;
         this.requiredItem = requiredItem;
         this.hasReceivedRequiredItem = false;
     }
@@ -30,16 +27,19 @@ public class Character {
         return this.location;
     }
 
-    public List<String> getInventory() {
-        return this.inventory;
+    public String getHasItem() {
+        return this.hasItem;
     }
 
-    public String getRequiredItem() {
-        return this.requiredItem;
+    public void setHasItem(String item) {
+        this.hasItem = item;
     }
 
     public void addItemToInventory(String item) {
         this.inventory.add(item);
         hasReceivedRequiredItem = true;
+    }
+    public String getRequiredItem() {
+        return this.requiredItem;
     }
 }

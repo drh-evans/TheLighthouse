@@ -89,10 +89,13 @@ public class ActionsTest {
         GameState testGameState = World.initialiseTestGameState();
         Actions.executeAction(testGameState, "take", "lantern");
         Actions.executeAction(testGameState, "move", "east");
+        main.Character roomCharacter = testGameState.getRoomCharacter();
+        assertEquals("key", roomCharacter.getHasItem());
         String message = Actions.executeAction(testGameState, "give", "lantern");
         assertEquals(message, "Item given! You've received an item back!");
         assertEquals(testGameState.itemLocations.get("lantern").getLocation(), -2);
         assertEquals(testGameState.itemLocations.get("key").getLocation(), -1);
+        assertEquals("lantern", roomCharacter.getHasItem());
     }
 
     @Test

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import main.GameState;
 import main.World;
-import java.util.List;
 
 public class WorldTest {
     @Test 
@@ -18,7 +17,7 @@ public class WorldTest {
         assertEquals(initialKeyLocation, initialGameState.itemLocations.get("key").getLocation());
         assertEquals("Keeper", keeperCharacter.getName());
         assertEquals(1, keeperCharacter.getLocation());
-        assertEquals(List.of("key"), keeperCharacter.getInventory());
+        assertEquals("key", keeperCharacter.getHasItem());
         assertEquals("lantern", keeperCharacter.getRequiredItem());
     }
 
