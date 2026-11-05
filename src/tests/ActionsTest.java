@@ -92,7 +92,7 @@ public class ActionsTest {
         main.Character roomCharacter = testGameState.getRoomCharacter();
         assertEquals("key", roomCharacter.getHasItem());
         String message = Actions.executeAction(testGameState, "give", "lantern");
-        assertEquals(message, "Item given! You've received an item back!");
+        assertEquals(message, "Aha, I've been looking for that! Take this key as a reward!");
         assertEquals(testGameState.itemLocations.get("lantern").getLocation(), -2);
         assertEquals(testGameState.itemLocations.get("key").getLocation(), -1);
         assertEquals("lantern", roomCharacter.getHasItem());
@@ -104,6 +104,6 @@ public class ActionsTest {
         Actions.executeAction(testGameState, "take", "apple");
         Actions.executeAction(testGameState, "move", "east");
         String message = Actions.executeAction(testGameState, "give", "apple");
-        assertEquals(message, "Character doesn't require that");
+        assertEquals(message, "I don't need that item!");
     }
 }
