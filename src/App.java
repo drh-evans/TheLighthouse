@@ -23,10 +23,11 @@ public class App {
 
     private static final String INSTRUCTIONS = "\n\nWelcome to the Lighthouse Text Adventure Game by Jason's Argonauts!\n          Feeling stuck? Type 'help' for a list of commands.\n";
     private static final String INTRO_STORY = """
-                                            You find yourself on the shore of the Gower as a storm rages around you. In the distance you 
-                                            notice a ship sailing through the darkness towards land. You spot an old lighthouse in the 
-                                            distance and you decide to head towards it to find shelter and warn the boat crew that they 
-                                            are approaching land. You wonder what secrets await you inside the lighthouse on this gloomy night. 
+                                            You find yourself on the shore of the Gower as a storm rages around you.
+                                            In the distance you notice a ship sailing through the darkness towards land.
+                                            You spot an old lighthouse in the distance and you decide to head towards it
+                                            to find shelter and warn the boat crew that they are approaching land.
+                                            You wonder what secrets await you inside the lighthouse on this gloomy night. 
                                             """;
 
     public static void main(String[] args) throws Exception {
