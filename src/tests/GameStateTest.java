@@ -4,7 +4,6 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Map;
-import java.util.List;
 import main.*;
 
 public class GameStateTest {
@@ -20,7 +19,7 @@ public class GameStateTest {
             {-1, 0, 0, -1, -1, -1},
         };
         Map<String, main.Character> testCharacters = Map.of(
-            "keeper", new main.Character("keeper", 1, List.of("key"), "lantern")
+            "keeper", new main.Character("keeper", 1, "key", "lantern")
         );
         GameState initialGameState = new GameState(initialRoom, initialItemLocations, doorMap, testCharacters);
 
@@ -83,11 +82,11 @@ public class GameStateTest {
     @Test 
     public void getRoomCharacterTest() {
         GameState gameState = World.initialiseTestGameState();
-        main.Character character = new main.Character("Keeper", 1, List.of("key"), "lantern");
+        main.Character character = new main.Character("Keeper", 1, "key", "lantern");
         Actions.executeAction(gameState, "move", "east");
         assertEquals(character.getName(), gameState.getRoomCharacter().getName());
         assertEquals(character.getLocation(), gameState.getRoomCharacter().getLocation());
-        assertEquals(character.getInventory(), gameState.getRoomCharacter().getInventory());
+        assertEquals(character.getHasItem(), gameState.getRoomCharacter().getHasItem());
     }
 
     @Test 
