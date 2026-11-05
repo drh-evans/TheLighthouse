@@ -7,13 +7,16 @@ import main.World;
 
 public class WorldTest {
     @Test 
-    void initialiseGameStateHappyPath() {
-        int initialRoom = World.getInitialRoom();
-        int initialKeyLocation = World.getInitialItemLocations().get("key").getLocation();
+    void initialiseGameStateHappyPath() {;
         GameState initialGameState = World.initialiseGameState();
+        main.Character keeperCharacter = initialGameState.characters.get("keeper");
 
-        assertEquals(initialRoom, initialGameState.currentRoom);
-        assertEquals(initialKeyLocation, initialGameState.itemLocations.get("key").getLocation());
+        assertEquals(0, initialGameState.currentRoom);
+        assertEquals(-2, initialGameState.itemLocations.get("key").getLocation());
+        assertEquals("Keeper", keeperCharacter.getName());
+        assertEquals(1, keeperCharacter.getLocation());
+        assertEquals("key", keeperCharacter.getHasItem());
+        assertEquals("lantern", keeperCharacter.getRequiredItem());
     }
 
     @Test 
@@ -21,6 +24,6 @@ public class WorldTest {
         GameState testGameState = World.initialiseTestGameState();
 
         assertEquals(0, testGameState.currentRoom);
-        assertEquals(1, testGameState.itemLocations.get("key").getLocation());
+        assertEquals(0, testGameState.itemLocations.get("lantern").getLocation());
     }
 }

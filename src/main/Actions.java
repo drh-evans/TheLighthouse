@@ -10,11 +10,14 @@ public class Actions {
             case "move", "go" -> move(gameState, rest);
             case "unlock" -> unlock(gameState, rest);
             case "take" -> take(gameState, rest);
+            case "give" -> give(gameState, rest);
             case "check", "inv", "inventory" -> inventory(gameState, rest);
             case "examine" -> examine(gameState, rest);
             case "look" -> look(gameState);
             case "help" -> help();
             case "discard", "drop" -> discard(gameState, rest);
+            case "map" -> World.printMap(gameState.currentRoom);
+            case "quit" -> "";
             default -> "Unrecognised command";
         };
     }
@@ -33,7 +36,7 @@ public class Actions {
         }
         // Check if exit is locked door
         if (gameState.isLockedDoor(direction)) {
-            return "Locked door. Unlock with key";
+            return "The door is locked, you need to find a key to unlock it.";
         }
          //check if they can move in that direction and return the next room name if they can
         int moveNext = World.map[gameState.currentRoom][direction];
@@ -42,7 +45,7 @@ public class Actions {
         }
         //update the current room and return the next room name
         gameState.currentRoom = moveNext;
-        return "You move " + rest + ".";
+        return "You move " + rest + "." + "\n" + World.roomDescriptions[gameState.currentRoom];
     }
 
     public static int sortDirection(String direction) {
@@ -80,10 +83,15 @@ public class Actions {
             int foundLockedDoorIndex = gameState.findLockedDoorForCurrentRoom();
             if (foundLockedDoorIndex == -1) return "No locked door here";
             else {
-                // Find direction
-                String direction = directions[foundLockedDoorIndex];
-                gameState.doorStates[currentRoom][foundLockedDoorIndex] = 0;
-                return "Unlocked the " + direction + " door!";
+                // Check has key
+                boolean hasKey = gameState.doesInventoryContain("key");
+
+                if (hasKey) {
+                    gameState.doorStates[currentRoom][foundLockedDoorIndex] = 0;
+                    // return "Door unlocked!";
+                    String direction = directions[foundLockedDoorIndex];
+                    return "Unlocked the " + direction + " door!";
+                } else return "Need key to unlock this door";
             }
             
         } else return "Unlock what?";
@@ -105,6 +113,38 @@ public class Actions {
             // System.out.println("No such item here");
             return "No such item here";
         }
+    }
+
+    // Give 
+    static String give(GameState gameState, String rest) {
+        // Does item exist?
+        boolean doesItemExist = gameState.doesItemExist(rest);
+        if (!doesItemExist) return "That item doesn't exist";
+
+        // Is item in player inv?
+        boolean isItemInInv = gameState.doesInventoryContain(rest);
+        if (!isItemInInv) return "You don't have that in your inventory";
+
+        // Is character present?
+        boolean isPresent = gameState.isCharacterPresent();
+        if (!isPresent) return "No character present";
+
+        Character character = gameState.getRoomCharacter();
+
+        // Does character require item?
+        boolean characterRequiresItem = character.getRequiredItem().equals(rest);
+        // String characterItem = character
+        //     .getInventory().stream()
+        //     .findFirst().orElse(null);
+
+        
+        if (characterRequiresItem) {
+            String characterItem = character.getHasItem();
+            gameState.itemLocations.get(rest).setLocation(-2);
+            character.setHasItem(rest);
+            gameState.itemLocations.get(characterItem).setLocation(-1);
+            return "Aha, I've been looking for that! Take this " + characterItem + " as a reward!";
+        } else return "I don't need that item!";
     }
 
     // Check inventory
@@ -207,18 +247,21 @@ public class Actions {
     // Help command 
     static String help(){
         return """
-                Available commands: 
-                move <direction> - Lets you move to that direction
-                go <direction> - Functions the same as move
-                look - Shows available exits
-                examine - Shows all the items in the current room
-                examine <item> - Gives a description of the item 
-                inventory - Shows inventory
-                inv - same as inventory
-                help - Displays available commands
-                quit - Exits the game
-                discard = lets you discard items from the inventory
-                drop = behaves the same as discard
+                **************************************************************************
+                *   Available commands:                                                  *
+                *                move <direction> - Lets you move to that direction      *
+                *                go <direction> - Functions the same as move             *
+                *                look - Shows available exits                            *
+                *                examine - Shows all the items in the current room       *
+                *                examine <item> - Gives a description of the item        *
+                *                inventory - Shows inventory                             *
+                *                inv - same as inventory                                 *
+                *                help - Displays available commands                      *
+                *                quit - Exits the game                                   *
+                *                discard - lets you discard items from the inventory     *
+                *                drop - behaves the same as discard                      *
+                *                give <item> - gives an item to a character in the room  *
+                **************************************************************************
                 """;
     }
     // Discard items 
@@ -227,14 +270,14 @@ public class Actions {
     static String discard (GameState gameState, String rest){
         Item item = gameState.itemLocations.get(rest);
         if (item == null){
-        return "item doesnt exist";
+        return "This item doesn't exist!";
         }
         if (item.getLocation() != -1){
-            return "You dont have that item";
+            return "You don't have that item!";
         }
        
         item.setLocation(gameState.currentRoom);
-        return "You dropped " + rest;
+        return "You dropped the " + rest;
         
         
 

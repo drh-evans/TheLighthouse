@@ -5,13 +5,19 @@ import static org.junit.jupiter.api.Assertions.*;
 import main.*;
 
 public class ActionsTest {
+    // Unlock
     @Test 
     void unlockDoorHappyPath() {
         GameState testGameState = World.initialiseTestGameState();
-        String message = Actions.executeAction(testGameState, "unlock", "door");
-        assertEquals(message, "Unlocked the north door!");
+        testGameState.itemLocations.get("key").setLocation(0);
+        String message1 = Actions.executeAction(testGameState, "unlock", "door");
+        assertEquals(message1, "Need key to unlock this door");
+        Actions.executeAction(testGameState, "take", "key");
+        String message2 = Actions.executeAction(testGameState, "unlock", "door");
+        assertEquals(message2, "Unlocked the north door!");
     }
 
+    // Take
     @Test
     void takeItemHappyPath() {
         GameState testGameState = World.initialiseTestGameState();
@@ -29,6 +35,7 @@ public class ActionsTest {
         assertEquals(message, "No such item in game");
     }
 
+    // Inventory
     @Test
     void checkEmptyInventoryTest() {
         GameState testGameState = World.initialiseTestGameState();
@@ -46,12 +53,13 @@ public class ActionsTest {
         assertEquals(message, "Inventory: apple");
     }
 
+    // Move
     @Test
     void moveAnyDirectionTest() {
         GameState testGameState = World.initialiseTestGameState();
         String message = Actions.executeAction(testGameState, "move", "east");
 
-        assertEquals(message, "You move east.");
+        assertTrue(message.contains("You move east."));
         assertEquals(1, testGameState.currentRoom);
     }
 
@@ -64,11 +72,11 @@ public class ActionsTest {
     }
 
     @Test
-    void moveNotRecognisedDirectionTest() {
+    void moveNotRecognisedDirectionTest() throws Exception {
         GameState testGameState = World.initialiseTestGameState();
         String message = Actions.executeAction(testGameState, "move", "sideways");    
 
-        assertEquals(message, "That is not a valid direction ");
+        assertEquals(message, "That is not a valid direction.");
     }
 
     @Test
@@ -76,8 +84,30 @@ public class ActionsTest {
         GameState testGameState = World.initialiseTestGameState();
         String message = Actions.executeAction(testGameState, "move", "north");    
 
-        assertEquals(message, "Locked door. Unlock with key");
+        assertEquals(message, "The door is locked, you need to find a key to unlock it.");
     }
     
-    
+    // Give
+    @Test 
+    void giveRequiredItemTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        Actions.executeAction(testGameState, "take", "lantern");
+        Actions.executeAction(testGameState, "move", "east");
+        main.Character roomCharacter = testGameState.getRoomCharacter();
+        assertEquals("key", roomCharacter.getHasItem());
+        String message = Actions.executeAction(testGameState, "give", "lantern");
+        assertEquals(message, "Aha, I've been looking for that! Take this key as a reward!");
+        assertEquals(testGameState.itemLocations.get("lantern").getLocation(), -2);
+        assertEquals(testGameState.itemLocations.get("key").getLocation(), -1);
+        assertEquals("lantern", roomCharacter.getHasItem());
+    }
+
+    @Test
+    void giveUnrequiredItemTest() {
+        GameState testGameState = World.initialiseTestGameState();
+        Actions.executeAction(testGameState, "take", "apple");
+        Actions.executeAction(testGameState, "move", "east");
+        String message = Actions.executeAction(testGameState, "give", "apple");
+        assertEquals(message, "I don't need that item!");
+    }
 }
