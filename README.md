@@ -137,6 +137,39 @@ These releases were planned on a Miro board as follows...
 
 ![Release planning](images/user-story-releases.png)
 
+## Features
+
+[Back to top](#the-lighthouse)
+
+The player has to navigate a 3D map in the following directions: north, east, south, west, up and down.
+
+The world map can define locked doors between exits. These doors can be unlocked with a "key" item that has to be found in the game.
+
+The player has the following actions available to them...
+
+- Move (move west)
+- Unlock (unlock door, unlock north)
+- Take (take item)
+- Discard (discard item)
+- Give (give item)
+- Check inventory (inv / inventory / check inventory)
+- Examine (examine)
+- Look (look)
+- Help (help)
+- Map (map)
+- Quit (quit)
+
+## Technologies
+
+[Back to top](#the-lighthouse)
+
+- Java: development language
+- JUnit: Java testing framework
+- Miro: agile process planning
+- GitHub Project: kanban board for task ticket handling
+- Git: version control
+- Visual Studio Code: IDE
+
 ## Testing
 
 [Back to top](#the-lighthouse)
@@ -156,3 +189,5 @@ The Argonauts would like to acknowledge the training they've had from the Softwa
 The Argonauts would also like to thank each other for being so damn good.
 
 Argonauts out.
+
+![Jason and the Argonauts](images/jason.jpg)
