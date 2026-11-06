@@ -189,7 +189,7 @@ public class ActionsTest {
         assertEquals(testGameState.currentRoom, testGameState.itemLocations.get("apple").getLocation());
     }
 
-
+    // Help 
     @Test 
     void testHelpCommand() {
         GameState testgGameState = World.initialiseTestGameState();
@@ -200,6 +200,7 @@ public class ActionsTest {
         assertTrue(results.contains("drop = behaves the same as discard"));
         assertTrue(results.contains("help - Displays available commands"));
     }
+    // Map
     @Test 
     void testMapShowsPlayerAtShorePath(){
         String result = World.printMap(0);
@@ -222,6 +223,5 @@ public class ActionsTest {
         assertTrue(result.contains("[ ] Shore Path"));
         assertTrue(result.contains("[X] Keeper's Cottage"));
     }
-
-
+    
 }

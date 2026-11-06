@@ -179,6 +179,9 @@ public class Actions {
         if (rest.equals("")) {
             return examineRoom(gameState);
         }
+        if(rest.equals("keeper") && gameState.currentRoom == 1){
+            return examineCharacter(gameState, rest);
+        }
         return examineItem(gameState, rest);
     }
 
@@ -194,6 +197,9 @@ public class Actions {
             return "You can't see that here.";
         }
         return "You examine the " + rest + " closely and see: " + descriptionOfItem(gameState, rest);
+    }
+    public static String examineCharacter(GameState gameState, String rest){
+        return World.printFrog() + "\n" + "You examine the keeper closely.'\n" + "The Keeper is badly injured and cant climb the tower.";
     }
 
     // Examine specific room
