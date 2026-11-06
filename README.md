@@ -1,12 +1,15 @@
 # The Lighthouse
 A text adventure game
 
+![Lighthouse splash image](images/marco-grosso-lighthouse.jpg)
+
 ## Table of contents
 
 > 1. [Overview](#overview)
 > 2. [Development methodology](#approach)
 > 3. [Testing](#testing)
-> 4. [Acknowledgements](#acknowledgements)
+> 4. [Credits](#credits) 
+> 5. [Acknowledgements](#acknowledgements)
 
 ## Overview
 
@@ -138,7 +141,11 @@ These releases were planned on a Miro board as follows...
 
 [Back to top](#the-lighthouse)
 
-Testing text
+A fast and loose approach to TDD was followed for this project, resulting in pretty decent test coverage, approximately.
+
+## Credits
+
+Marco Grosso for the Lighthouse image in the readme. Taken from Unsplash.
 
 ## Acknowledgements
 
