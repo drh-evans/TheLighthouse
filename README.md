@@ -18,6 +18,7 @@ Overview text
 
 [Back to top](#the-lighthouse)
 
+<<<<<<< HEAD
 Dev methodology text
 
 ## Testing
@@ -31,3 +32,9 @@ Testing text
 [Back to top](#the-lighthouse)
 
 Acknowledgement text
+=======
+The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+
+
+
+>>>>>>> 1333bae (Tests for actions)
