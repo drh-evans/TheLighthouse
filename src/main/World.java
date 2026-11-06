@@ -171,12 +171,12 @@ public class World {
                            |
                            |
 
-                    %s Base of the Tower ---  %s Store Room
+                    %s Base of the Tower  ---  %s Store Room
 
                            |
                            |
 
-                    %s Shore Path --- %s Keeper's Cottage
+                    %s Shore Path  ---  %s Keeper's Cottage
 
         [X] = You are here
         """.formatted(m[6], m[5], m[4], m[2], m[3], m[0], m[1]);

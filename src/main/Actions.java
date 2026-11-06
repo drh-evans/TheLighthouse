@@ -63,7 +63,7 @@ public class Actions {
     // Unlock
     static String unlock(GameState gameState, String rest) {
         // If rest is direction
-        String[] directions = new String[] {"north", "east", "south", "north", "up", "down"};
+        String[] directions = World.directionNames;
         int currentRoom = gameState.currentRoom;
         if (Arrays.asList(directions).contains(rest)) {
             // Need to check if door
@@ -260,6 +260,8 @@ public class Actions {
                 *                quit - Exits the game                                   *
                 *                discard - lets you discard items from the inventory     *
                 *                drop - behaves the same as discard                      *
+                *                map - shows your location and all the rooms             *
+                *                unlock - unlocks a locked door                          *
                 *                give <item> - gives an item to a character in the room  *
                 **************************************************************************
                 """;
@@ -282,6 +284,4 @@ public class Actions {
         
 
     }
-   
 }
-

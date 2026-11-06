@@ -110,4 +110,44 @@ public class ActionsTest {
         String message = Actions.executeAction(testGameState, "give", "apple");
         assertEquals(message, "I don't need that item!");
     }
+
+    @Test 
+    void checkDirection(){
+        assertEquals(0, Actions.sortDirection("north"));
+        assertEquals(1, Actions.sortDirection("east"));
+        assertEquals(2, Actions.sortDirection("south"));
+        assertEquals(3, Actions.sortDirection("west"));
+        assertEquals(4, Actions.sortDirection("up"));
+        assertEquals(5, Actions.sortDirection("down"));
+        assertEquals(-1, Actions.sortDirection("sideways"));
+    }
+    @Test
+    void giveItemNotCarriedTest() {
+        GameState testGameState = World.initialiseGameState();
+        Actions.executeAction(testGameState, "move", "east");
+        String message = Actions.executeAction(testGameState, "give", "lantern");
+ 
+        assertEquals("You don't have that in your inventory", message);
+        assertEquals(0, testGameState.itemLocations.get("lantern").getLocation());
+        assertEquals(-2, testGameState.itemLocations.get("key").getLocation());     
+    }
+
+    @Test
+    void dropItemThatDoesNotExistTest() {
+        GameState testGameState = World.initialiseGameState();
+        assertEquals("This item doesn't exist!", Actions.executeAction(testGameState, "drop", "crown"));
+    }
+
+
+    @Test
+    void moveThroughLockedDoorWithKeyTest() {
+        GameState testGameState = World.initialiseGameState();
+        testGameState.itemLocations.get("key").setLocation(-1);
+        
+        Actions.executeAction(testGameState, "unlock", "door");
+        String message = Actions.executeAction(testGameState, "move", "north");
+ 
+        assertTrue(message.contains("You move north."));
+        assertEquals(2, testGameState.currentRoom);
+}
 }

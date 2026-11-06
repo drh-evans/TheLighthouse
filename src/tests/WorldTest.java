@@ -26,4 +26,6 @@ public class WorldTest {
         assertEquals(0, testGameState.currentRoom);
         assertEquals(0, testGameState.itemLocations.get("lantern").getLocation());
     }
+
+    
 }
