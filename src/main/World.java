@@ -53,7 +53,7 @@ public class World {
         """,
         """
         You are at the base of the lighthouse tower.
-        You notice an archway to your north that leads to a staircase,
+        You notice an archway that leads to a staircase that spirals up to the top of the tower,
         and behind you to the south is a door that leads back to the shore path.
         You also notice a rotting door to your east, where could that lead?
         """,
@@ -110,7 +110,8 @@ public class World {
         Map<String, Item> initialItemLocations = Map.of(
             "lantern", new Item("lantern", "A bright lantern", 0),
             "key", new Item("key", "A small gold key", -2),
-            "oil can", new Item("oil can", "A greasy can full of oil", 3)
+            "oil can", new Item("oil can", "A greasy can full of oil", 3),
+            "logbook", new Item("logbook", "A worn leather logbook that reads \"12/10/2020: The light is dimming, get oil from the storeroom\"", 5)
         );
 
         Map<String, Character> characters = Map.of(
@@ -128,7 +129,9 @@ public class World {
         Map<String, Item> initialItemLocations = Map.of(
             "lantern", new Item("lantern", "A bright lantern", 0),
             "apple", new Item("apple", "A crisp red apple", 0), // Location -1 = Inventory
-            "key", new Item("key", "A small gold key", -2)
+            "key", new Item("key", "A small gold key", -2),
+            "oil can", new Item("oil can", "A greasy can full of oil", 3),
+            "logbook", new Item("logbook", "A worn leather logbook that reads \"12/10/2020: The light is dimming, get oil from the storeroom\"", 5)
         );
 
         int[][] testDoorMap = {
