@@ -6,10 +6,12 @@ A text adventure game
 ## Table of contents
 
 > 1. [Overview](#overview)
-> 2. [Development methodology](#approach)
-> 3. [Testing](#testing)
-> 4. [Credits](#credits) 
-> 5. [Acknowledgements](#acknowledgements)
+> 2. [Development methodology](#development-methodology)
+> 3. [Features](#features)
+> 4. [Technologies](#technologies)
+> 5. [Testing](#testing)
+> 6. [Credits](#credits) 
+> 7. [Acknowledgements](#acknowledgements)
 
 ## Overview
 
@@ -177,6 +179,8 @@ The player has the following actions available to them...
 A fast and loose approach to TDD was followed for this project, resulting in pretty decent test coverage, approximately.
 
 ## Credits
+
+[Back to top](#the-lighthouse)
 
 Marco Grosso for the Lighthouse image in the readme. Taken from Unsplash.
 
