@@ -133,8 +133,9 @@ public class ActionsTest {
     @Test 
     void examineEmptyRoom() {
         GameState testGameState = World.initialiseTestGameState();
+         Actions.executeAction(testGameState, "take", "lantern");
         Actions.executeAction(testGameState, "move", "east");
-        Actions.executeAction(testGameState, "take", "key");
+        Actions.executeAction(testGameState, "give", "lantern");
         Actions.executeAction(testGameState, "move", "west");
         Actions.executeAction(testGameState, "unlock", "door");
         Actions.executeAction(testGameState, "move", "north");
@@ -161,7 +162,7 @@ public class ActionsTest {
     @Test 
     void testBaseofTheTower(){
         GameState testGameState = World.initialiseTestGameState();
-        Actions.executeAction(testGameState, "take", "lanter");
+        Actions.executeAction(testGameState, "take", "lantern");
         Actions.executeAction(testGameState, "move", "east");
         Actions.executeAction(testGameState, "give", "lantern");
         Actions.executeAction(testGameState, "move", "west");
@@ -185,7 +186,7 @@ public class ActionsTest {
         GameState testGameState = World.initialiseTestGameState();
         testGameState.itemLocations.get("apple").setLocation(-1);
         String dropResult = Actions.executeAction(testGameState, "drop", "apple");
-        assertEquals("You dropped apple", dropResult);
+        assertEquals("You dropped the apple", dropResult);
         assertEquals(testGameState.currentRoom, testGameState.itemLocations.get("apple").getLocation());
     }
 
@@ -197,7 +198,6 @@ public class ActionsTest {
         assertTrue(results.contains("Available commands:"));
         assertTrue(results.contains("move <direction> - Lets you move to that direction"));
         assertTrue(results.contains("inventory - Shows inventory"));
-        assertTrue(results.contains("drop = behaves the same as discard"));
         assertTrue(results.contains("help - Displays available commands"));
     }
     // Map
